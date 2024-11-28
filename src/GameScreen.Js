@@ -10,7 +10,9 @@ function PauseButton(){//
 }
 function InfoButton(){
     const handleInfo= () => {};
-    return <button on click ={handleInfo}></button>
+    return <button onClick ={handleInfo}>
+        
+    </button>
 }
 function Timer({timeLeft,timeCost}){
     <div className="timer">

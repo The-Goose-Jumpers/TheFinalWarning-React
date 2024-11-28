@@ -17,13 +17,13 @@ function MainMenu() {
   return (
     <div className="main-menu">
       <div className="tv-screen">
+        <h1 className="game-title"> THE FINAL WARNING </h1>
         <div className="tv-controls">
           <PlayButton />
           <ScoreBoardButton />
         </div>
       </div>
       <HelpButton />
-      <h1 className="game-title">THE FINAL WARNING</h1>
     </div>
   );
 }

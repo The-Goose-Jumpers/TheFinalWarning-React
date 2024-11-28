@@ -1,61 +1,105 @@
-
 .main-menu {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    background-image: url("./Images/MainMenu.png"); 
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+  position: fixed; /* Ensure it stays fixed relative to the viewport */
+  width: 100vw;
+  height: 100vh; 
+  background-image: url("./Images/MainMenu.png"); 
+  background-size: cover; /* Covers the entire screen */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Ensures it doesn't scroll */
+  background-color: #a8a197;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+}
+
   
   .tv-screen {
-    position: relative;
-    width: 70%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    padding-right: 2rem;
+    width: 35%;
+    padding-top: 10%;
+    padding-left: 5%;
+  /* border: 2px solid red;*/
   }
   
   .tv-controls {
+    padding-top: 20%;
     display: flex;
-    flex-direction: column;
+    position: relative;
+    left: 12%;
     gap: 1rem;
-  }
+    align-items: flex-start;
+    flex-direction: column;
+}
+
   
 
   button {
     padding: 1rem;
     font-size: 1.2rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 20px;
     cursor: pointer;
   }
   
   .help-button {
     position: absolute;
-    top: 2rem;
-    left: 2rem;
-    font-size: 1.5rem;
+    top: 5vh;
+    left: 2vw;
+    font-size: 1rem;
+    color: #f4ebdd;
+    background-color: #483516;
   }
-  
-  .play-button,
-  .scoreboard-button {
-    width: 120px;
-  }
-  
+
+.play-button,
+.scoreboard-button {
+    width: 50%;
+    color: #f4ebdd;
+    background-color: #483516;
+    
+}
+
+.game-title {
+    /* position: absolute;
+    left: 10vw;  Place title relative to viewport width 
+    top: 15vh; Place title relative to viewport height */
+    font-size: 5vw; /* Scales proportionally with screen width */
+    font-family: "Lacquer", system-ui;
+    color: #332206; 
+}
+
+@media (max-width: 768px) {
   .game-title {
-    position:absolute;
-    padding: 3rem,3rem;
-    left: 2rem;
-    font-size: 4rem;
-    color: rgb(0, 0, 0);
-    /*text-shadow: 2px 2px 5px black;*/
+      font-size: 5vw; /* Adjust font size for smaller screens */
+      left: 5vw;
+      top: 10vh;
   }
+
+  .help-button {
+      top: 3vh;
+      left: 1vw;
+  }
+
+  /* .play-button,
+  .scoreboard-button {
+      width: 15vw; /* Make buttons larger on small screens 
+  } */
+}
+
+button:hover {
+  transform: scale(1.1); /* Slightly increase size on hover */
+  background-color: #332206; /* Change background color */
+  color: #ffffff; /* Change text color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+}
+
+/* Specific styles for buttons */
+.help-button:hover {
+  background-color: #5a4233; /* Custom hover color for help button */
+}
+
+.play-button:hover, 
+.scoreboard-button:hover {
+  background-color: #6b4e3d; /* Custom hover color for play and scoreboard buttons */
+}
   
