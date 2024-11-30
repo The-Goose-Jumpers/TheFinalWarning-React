@@ -1,12 +1,13 @@
 import React from "react";
-import "./App.css"
-import MainMenu from "./MainMenu";
+import "./styles/App.css"
+import Game from "./components/Game"
+
 
 function App() {
   return (
-    <div className="App">
-      <MainMenu />
-    </div>
+    <>
+      <Game/>
+    </>
   );
 }
 

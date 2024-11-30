@@ -1,8 +1,8 @@
 
-import "./MainMenu.css"; 
+import "../styles/MainMenu.css"; 
 
 function HelpButton() {
-  return <button className="help-button">?</button>;
+  return <button className="help-button" >?</button>;
 }
 
 function PlayButton() {
@@ -10,7 +10,7 @@ function PlayButton() {
 }
 
 function ScoreBoardButton() {
-  return <button className="scoreboard-button">Scoreboard</button>;
+  return <button className="scoreboard-button" >Scoreboard</button>;
 }
 
 function MainMenu() {

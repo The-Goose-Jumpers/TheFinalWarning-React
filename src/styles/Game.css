@@ -1,0 +1,66 @@
+
+.game-view {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.dialogue{
+    font-size: 30px;
+}
+
+.choices {
+    display: flex;
+    margin-top: 20px;
+    gap:20px;
+}
+.timer{
+    position:absolute;
+    padding:16px;
+    top: 3vh;
+    right: 45vw;
+    font-size: 20px;
+    border-radius: 5px;
+    color: #f4ebdd;
+    background-color:#0c0801b6;
+    
+}
+button {
+    padding: 16px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+.pause-button{
+    position: absolute;
+    top: 3vh;
+    left: 2vw;
+    color: #f4ebdd;
+    background-color:#0c0801b6;
+}
+.pause-modal .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:#0c0801b6;
+}
+
+.pause-modal .modal-content {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    gap:20px;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 25px;
+    border-radius: 5px;
+    flex-direction: column;
+}
