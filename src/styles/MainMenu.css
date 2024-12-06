@@ -23,10 +23,10 @@
   }
   
   .tv-controls {
-    padding-top: 20%;
+    padding-top: 16%;
     display: flex;
     position: relative;
-    left: 12%;
+    left: 13%;
     gap: 1rem;
     align-items: flex-start;
     flex-direction: column;
@@ -61,9 +61,9 @@
     /* position: absolute;
     left: 10vw;  Place title relative to viewport width 
     top: 15vh; Place title relative to viewport height */
-    font-size: 5vw; /* Scales proportionally with screen width */
-    font-family: "Lacquer", system-ui;
-    color: #332206; 
+    font-size: 90px; /* Scales proportionally with screen width */
+    font-family: "Caesar Dressing", system-ui;
+    color: #483516; 
 }
 
 @media (max-width: 768px) {

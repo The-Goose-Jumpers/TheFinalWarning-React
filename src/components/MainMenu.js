@@ -1,14 +1,24 @@
 
 import "../styles/MainMenu.css"; 
+import { useNavigate } from "react-router-dom";
 
 function HelpButton() {
   return <button className="help-button" >?</button>;
 }
 
 function PlayButton() {
-  return <button className="play-button">Play</button>;
-}
+  const navigate = useNavigate();
 
+  const handlePlayClick = () => {
+    navigate("/game"); // Navigates to the game route
+  };
+
+  return (
+    <button className="play-button" onClick={handlePlayClick}>
+      Play
+    </button>
+  );
+}
 function ScoreBoardButton() {
   return <button className="scoreboard-button" >Scoreboard</button>;
 }
