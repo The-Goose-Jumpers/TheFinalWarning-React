@@ -34,6 +34,8 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    color: #f4ebdd;
+    background-color:#483516;
     
 }
 .pause-button{
@@ -41,7 +43,7 @@ button {
     top: 3vh;
     left: 2vw;
     color: #f4ebdd;
-    background-color:#0c0801b6;
+     background-color:#0c0801b6;;
 }
 .pause-modal .overlay {
     position: fixed;
