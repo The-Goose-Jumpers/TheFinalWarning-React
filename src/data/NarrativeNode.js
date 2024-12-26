@@ -1,12 +1,4 @@
 /**
- * @typedef {Object} NarrativeNode
- * @property {string} id - The unique identifier for this node
- * @property {string} dialogue - The dialogue for this node
- * @property {string} backgroundImage - The background image URL
- * @property {Choice[]} choices - An array of choices for the player
- */
-
-/**
  * Represents a single narrative node in the game.
  */
 class NarrativeNode {
@@ -15,12 +7,14 @@ class NarrativeNode {
    * @param {string} dialogue - The dialogue for this node
    * @param {string} backgroundImage - The background image URL
    * @param {Choice[]} choices - The available choices for the player
+   * @param {boolean} allowMultipleChoices - Whether multiple choices can be selected
    */
-  constructor(id, dialogue, backgroundImage, choices) {
+  constructor(id, dialogue, backgroundImage, choices, allowMultipleChoices = false) {
     this.id = id;
     this.dialogue = dialogue;
     this.backgroundImage = backgroundImage;
     this.choices = choices;
+    this.allowMultipleChoices = allowMultipleChoices;
   }
 }
 

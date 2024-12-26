@@ -1,8 +1,20 @@
-import React from "react";
+import { useState } from "react";
 
-function ChoiceButton({choice, onChoice}) {
+function ChoiceButton({ choice, onChoice }) {
+  const [selected, setSelected] = useState(false);
+
+  function handleClick() {
+    setSelected(!selected);
+    onChoice(choice.id, !selected);
+  }
+
   return (
-    <button onClick={() => onChoice(choice.id)}>{choice.text}</button>
+    <button
+      className={`choice-button ${selected ? "selected" : ""}`}
+      onClick={handleClick}
+    >
+      {choice.text}
+    </button>
   );
 }
 

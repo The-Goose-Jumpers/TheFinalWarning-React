@@ -1,5 +1,5 @@
 import "../styles/MainMenu.css";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function HelpButton() {
   return <button className="help-button">?</button>;

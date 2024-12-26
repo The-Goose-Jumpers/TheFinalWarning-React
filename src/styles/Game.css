@@ -39,6 +39,10 @@ button {
   background-color: #483516;
 }
 
+.choice-button.selected {
+  background-color: #984d2d;
+}
+
 .pause-button {
   position: absolute;
   top: 3vh;
