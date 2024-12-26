@@ -1,5 +1,3 @@
-// src/data/narratives/mysteryStory.js
-
 import NarrativeNode from "../NarrativeNode";
 import Choice from "../Choice";
 
@@ -8,7 +6,7 @@ import Choice from "../Choice";
  */
 const mysteryStory = {
   id: "mysteryStory",
-  determineNextNode: (choicesTaken) => {
+  determineNextNode: (currentNode, choicesTaken) => {
     // Custom logic for mystery story
     if (choicesTaken.includes("a")) {
       return "node1";
@@ -18,12 +16,12 @@ const mysteryStory = {
     }
     return "node2";
   },
-  timeUntilDisaster:2880,
+  timeUntilDisaster: 2880,
   nodes: {
     "start": new NarrativeNode("start", "You just heard the news about the hurricane", "LivingRoom.png", [
       new Choice("a", "I don’t think the situation is that serious.", -5),
       new Choice("b", "I need to prepare my house!", 5),
-      new Choice("c", "I need to evacutate!", 5),
+      new Choice("c", "I need to evacuate!", 5),
     ]),
     "node1": new NarrativeNode("node4", "They say this every time and it always turns out to be fine", "LivingRoom.png", [
       new Choice("d", "I should just ignore and continue my daily routine", -5),

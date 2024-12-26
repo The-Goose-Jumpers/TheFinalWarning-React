@@ -1,6 +1,4 @@
-// src/components/Game.js
-
-import { useState, useEffect } from "react";
+import {useEffect, useState} from "react";
 import "../styles/Game.css"
 import GameView from "./GameView";
 import NARRATIVES from "../data/narratives";
@@ -13,27 +11,26 @@ import PauseModal from "./PauseModal";
  * @property {boolean} hasCar - Whether the player has a car
  */
 
-  function Timer({ minutes }) {
-    const days = Math.floor(minutes / 1440);
-    minutes %= 1440;
-    const hours = Math.floor(minutes / 60);
-    minutes %= 60;
+function Timer({minutes}) {
+  const days = Math.floor(minutes / 1440);
+  minutes %= 1440;
+  const hours = Math.floor(minutes / 60);
+  minutes %= 60;
 
-    let result = [];
-    if (days > 0) result.push(`${days} day${days > 1 ? 's' : ''}`);
-    if (hours > 0) result.push(`${hours} hour${hours > 1 ? 's' : ''}`);
-    if (minutes > 0) result.push(`${minutes} minute${minutes > 1 ? 's' : ''}`);
+  let result = [];
+  if (days > 0) result.push(`${days} day${days > 1 ? 's' : ''}`);
+  if (hours > 0) result.push(`${hours} hour${hours > 1 ? 's' : ''}`);
+  if (minutes > 0) result.push(`${minutes} minute${minutes > 1 ? 's' : ''}`);
 
-    result = result.length > 1
-        ? result.slice(0, -1).join(', ') + ' and ' + result.slice(-1)
-        : result[0];
+  result = result.length > 1
+    ? result.slice(0, -1).join(', ') + ' and ' + result.slice(-1)
+    : result[0];
 
-    return (
-        <span className="timer">Time Left: {result}</span>
-          
-      
-    )
+  return (
+    <span className="timer">Time Left: {result}</span>
+  )
 }
+
 function Game() {
   /** @type {PlayerTraits} */
   const [playerTraits, setPlayerTraits] = useState({
@@ -55,13 +52,13 @@ function Game() {
 
   function handleChoice(choiceId) {
     const choice = narrative.nodes[currentNode].choices.find((choice) => choice.id === choiceId);
-    
+
     // Calculate the score based on the player's traits
     const choiceScore = choice.getScore(playerTraits);
     setScore((prevScore) => prevScore + choiceScore);
 
     setChoicesTaken((prevChoices) => [...prevChoices, choiceId]);
-    const nextNode = narrative.determineNextNode([...choicesTaken, choiceId]);
+    const nextNode = narrative.determineNextNode(currentNode, [...choicesTaken, choiceId]);
     setCurrentNode(nextNode);
   }
 
@@ -78,14 +75,15 @@ function Game() {
 
   if (!narrative || !currentNode) return <div>Loading...</div>;
 
-  const { dialogue, choices, backgroundImage } = narrative.nodes[currentNode];
+  const {dialogue, choices, backgroundImage} = narrative.nodes[currentNode];
 
   return (
-    <> <div className="topbar">
-      <button className="pause-button" onClick={togglePause}>
-        Pause
-      </button>
-      <Timer minutes={narrative.timeUntilDisaster}/>
+    <>
+      <div className="topbar">
+        <button className="pause-button" onClick={togglePause}>
+          Pause
+        </button>
+        <Timer minutes={narrative.timeUntilDisaster}/>
       </div>
       <GameView
         dialogue={dialogue}

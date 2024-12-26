@@ -1,8 +1,8 @@
 .main-menu {
   position: fixed; /* Ensure it stays fixed relative to the viewport */
   width: 100vw;
-  height: 100vh; 
-  background-image: url("/public/images/MainMenu.png"); 
+  height: 100vh;
+  background-image: url("/public/images/MainMenu.png");
   background-size: cover; /* Covers the entire screen */
   background-position: center;
   background-repeat: no-repeat;
@@ -14,73 +14,73 @@
   justify-content: center; */
 }
 
-  
-  .tv-screen {
-    width: 35%;
-    padding-top: 10%;
-    padding-left: 5%;
+
+.tv-screen {
+  width: 35%;
+  padding-top: 10%;
+  padding-left: 5%;
   /* border: 2px solid red;*/
-  }
-  
-  .tv-controls {
-    padding-top: 16%;
-    display: flex;
-    position: relative;
-    left: 13%;
-    gap: 1rem;
-    align-items: flex-start;
-    flex-direction: column;
 }
 
-  button {
-    padding: 1rem;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-  }
-  
-  .help-button {
-    position: absolute;
-    top: 5vh;
-    left: 2vw;
-    font-size: 1rem;
-    color: #f4ebdd;
-    background-color: #483516;
-  }
+.tv-controls {
+  padding-top: 16%;
+  display: flex;
+  position: relative;
+  left: 13%;
+  gap: 1rem;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+button {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.help-button {
+  position: absolute;
+  top: 5vh;
+  left: 2vw;
+  font-size: 1rem;
+  color: #f4ebdd;
+  background-color: #483516;
+}
 
 .play-button,
 .scoreboard-button {
-    width: 50%;
-    color: #f4ebdd;
-    background-color: #483516;
-    
+  width: 50%;
+  color: #f4ebdd;
+  background-color: #483516;
+
 }
 
 .game-title {
-    /* position: absolute;
-    left: 10vw;  Place title relative to viewport width 
-    top: 15vh; Place title relative to viewport height */
-    font-size: 90px; /* Scales proportionally with screen width */
-    font-family: "Caesar Dressing", system-ui;
-    color: #483516; 
+  /* position: absolute;
+  left: 10vw;  Place title relative to viewport width
+  top: 15vh; Place title relative to viewport height */
+  font-size: 90px; /* Scales proportionally with screen width */
+  font-family: "Caesar Dressing", system-ui;
+  color: #483516;
 }
 
 @media (max-width: 768px) {
   .game-title {
-      font-size: 5vw; /* Adjust font size for smaller screens */
-      left: 5vw;
-      top: 10vh;
+    font-size: 5vw; /* Adjust font size for smaller screens */
+    left: 5vw;
+    top: 10vh;
   }
 
   .help-button {
-      top: 3vh;
-      left: 1vw;
+    top: 3vh;
+    left: 1vw;
   }
 
   /* .play-button,
   .scoreboard-button {
-      width: 15vw; /* Make buttons larger on small screens 
+      width: 15vw; /* Make buttons larger on small screens
   } */
 }
 
@@ -96,7 +96,7 @@ button:hover {
   background-color: #5a4233; /* Custom hover color for help button */
 }
 
-.play-button:hover, 
+.play-button:hover,
 .scoreboard-button:hover {
   background-color: #6b4e3d; /* Custom hover color for play and scoreboard buttons */
 }

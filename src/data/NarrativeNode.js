@@ -1,7 +1,3 @@
-// src/data/NarrativeNode.js
-
-import Choice from "./Choice";
-
 /**
  * @typedef {Object} NarrativeNode
  * @property {string} id - The unique identifier for this node

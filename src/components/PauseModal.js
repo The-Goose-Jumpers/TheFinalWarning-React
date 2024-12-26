@@ -1,8 +1,6 @@
-// src/components/PauseModal.js
-
 import React from "react";
 
-function PauseModal({ onRestart, onResume }) {
+function PauseModal({onRestart, onResume}) {
   return (
     <div className="pause-modal">
       <div className="overlay"></div>

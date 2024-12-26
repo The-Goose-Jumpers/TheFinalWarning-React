@@ -1,9 +1,8 @@
-
-import "../styles/MainMenu.css"; 
-import { useNavigate } from "react-router-dom";
+import "../styles/MainMenu.css";
+import {useNavigate} from "react-router-dom";
 
 function HelpButton() {
-  return <button className="help-button" >?</button>;
+  return <button className="help-button">?</button>;
 }
 
 function PlayButton() {
@@ -19,8 +18,9 @@ function PlayButton() {
     </button>
   );
 }
+
 function ScoreBoardButton() {
-  return <button className="scoreboard-button" >Scoreboard</button>;
+  return <button className="scoreboard-button">Scoreboard</button>;
 }
 
 function MainMenu() {
@@ -29,11 +29,11 @@ function MainMenu() {
       <div className="tv-screen">
         <h1 className="game-title"> THE FINAL WARNING </h1>
         <div className="tv-controls">
-          <PlayButton />
-          <ScoreBoardButton />
+          <PlayButton/>
+          <ScoreBoardButton/>
         </div>
       </div>
-      <HelpButton />
+      <HelpButton/>
     </div>
   );
 }
