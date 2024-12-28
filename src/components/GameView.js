@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ChoiceButton from "./ChoiceButton";
+import {UI} from "../data/ImageLoad";
 
 function GameView({ narrativeNode, onChoice }) {
   const { dialogue, choices, backgroundImage, allowMultipleChoices } = narrativeNode;
@@ -23,23 +24,23 @@ function GameView({ narrativeNode, onChoice }) {
   }
 
   return (
-    <div className="game-view" style={{ backgroundImage: `url(/images/${backgroundImage})` }}>
-      <div className="dialogue">{dialogue}</div>
-      <div className="choices">
-        {choices.map((choice) => (
-          <ChoiceButton
-            key={choice.id}
-            choice={choice}
-            onChoice={handleChoice}
-          />
-        ))}
+      <div className="game-view" style={{backgroundImage: `url(${backgroundImage})`}}>
+        <div className="choices">
+          {choices.map((choice) => (
+              <ChoiceButton
+                  key={choice.id}
+                  choice={choice}
+                  onChoice={handleChoice}
+              />
+          ))}
+        </div>
+        <div className="dialogue">{dialogue}</div>
+        {allowMultipleChoices && (
+            <button className="confirm-button" onClick={confirmChoices}>
+              Confirm Choices
+            </button>
+        )}
       </div>
-      {allowMultipleChoices && (
-        <button className="confirm-button" onClick={confirmChoices}>
-          Confirm Choices
-        </button>
-      )}
-    </div>
   );
 }
 
