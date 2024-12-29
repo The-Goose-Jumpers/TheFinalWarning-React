@@ -2,7 +2,7 @@
   position: fixed; /* Ensure it stays fixed relative to the viewport */
   width: 100vw;
   height: 100vh;
-  background-image: url("/public/images/MainMenu/MainMenu.png");
+  background-image: url("/public/images/MainMenu/background.svg");
   background-size: cover; /* Covers the entire screen */
   background-position: center;
   background-repeat: no-repeat;
@@ -16,14 +16,14 @@
 
 
 .tv-screen {
-  width: 35%;
+  width: 47%;
   padding-top: 10%;
-  padding-left: 5%;
+  padding-left: 10%;
   /* border: 2px solid red;*/
 }
 
 .tv-controls {
-  padding-top: 16%;
+  padding-top: 10%;
   display: flex;
   position: relative;
   left: 13%;
@@ -45,15 +45,15 @@ button {
   top: 5vh;
   left: 2vw;
   font-size: 1rem;
-  color: #f4ebdd;
-  background-color: #483516;
+  color: #3a3834;
+  background-color: #c7b494;
 }
 
 .play-button,
 .scoreboard-button {
   width: 50%;
-  color: #f4ebdd;
-  background-color: #483516;
+  color: #33302a;
+  background-color: #c7b494;
 
 }
 
@@ -61,9 +61,9 @@ button {
   /* position: absolute;
   left: 10vw;  Place title relative to viewport width
   top: 15vh; Place title relative to viewport height */
-  font-size: 90px; /* Scales proportionally with screen width */
+  font-size: 107px; /* Scales proportionally with screen width */
   font-family: "Caesar Dressing", system-ui;
-  color: #483516;
+  color: #c7b494;
 }
 
 @media (max-width: 768px) {
