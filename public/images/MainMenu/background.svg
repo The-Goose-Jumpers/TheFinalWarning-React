@@ -3,8 +3,8 @@
 
 <svg
    width="407.38751mm"
-   height="229.60011mm"
-   viewBox="0 0 1539.7324 867.77994"
+   height="229.60013mm"
+   viewBox="0 0 1539.7324 867.78"
    version="1.1"
    id="svg1"
    xml:space="preserve"
@@ -98,11 +98,7 @@
    width="1"
    height="2"
    id="rect203" />
-    </pattern><linearGradient
-       id="swatch18"><stop
-         style="stop-color:#523829;stop-opacity:1;"
-         offset="0"
-         id="stop18" /></linearGradient><radialGradient
+    </pattern><radialGradient
        xlink:href="#linearGradient92"
        id="radialGradient93"
        cx="808.97498"
@@ -116,7 +112,7 @@
      transform="translate(0,-20.535596)"><g
        id="g11"
        style="display:inline"><rect
-         style="display:inline;fill:#ec0000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.52111;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         style="display:inline;fill:#6f806f;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.52111;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          id="rect34-4-2"
          width="1654.7316"
          height="894.47614"
@@ -141,7 +137,7 @@
          x="-277.58511"
          y="-228.8407"
          transform="matrix(0.97778925,0,0,0.85630161,249.86391,169.59237)" /><rect
-         style="mix-blend-mode:luminosity;fill:url(#radialGradient93);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.72701;stroke-linejoin:round"
+         style="display:inline;mix-blend-mode:luminosity;fill:url(#radialGradient93);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.72701;stroke-linejoin:round"
          id="rect92"
          width="2131.0779"
          height="1512.418"

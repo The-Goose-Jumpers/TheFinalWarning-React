@@ -34,7 +34,9 @@ function GameView({ narrativeNode, onChoice }) {
               />
           ))}
         </div>
-        <div className="dialogue">{dialogue}</div>
+        <div className="textbox">
+            <div className="dialogue">{dialogue}</div>
+        </div>
         {allowMultipleChoices && (
             <button className="confirm-button" onClick={confirmChoices}>
               Confirm Choices

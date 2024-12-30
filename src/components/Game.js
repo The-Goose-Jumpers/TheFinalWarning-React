@@ -96,9 +96,10 @@ function Game() {
     <>
       <div className="topbar">
         <button className="pause-button" onClick={togglePause}>
-          Pause
         </button>
-        <Timer minutes={timeLeft} />
+        <div className="timerbox">
+          <Timer minutes={timeLeft} />
+        </div>
       </div>
       <GameView
         narrativeNode={narrativeNode}

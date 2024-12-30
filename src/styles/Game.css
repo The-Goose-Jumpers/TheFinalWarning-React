@@ -1,16 +1,33 @@
 .game-view {
   height: 100vh;
-  background-size: cover;
+  background-size: 100% 105%;
   background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
+.textbox{
+    position: absolute;
+    background-image: url("/public/images/UI/textbox.svg");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 150vh;
+    height: 25vh;
+    bottom: 7%;
+}
+
 .dialogue {
-  font-size: 30px;
-  background-position: center;
+  font-size: 20px;
+  padding: 13vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,15 +41,34 @@
   gap: 20px;
 }
 
-.timer {
+.topbar{
+    position: absolute;
+    display:  flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+
+}
+
+.timerbox {
   position: absolute;
-  padding: 16px;
-  top: 3vh;
-  right: 45vw;
+  background-image: url("/public/images/UI/clockbox.svg");
+  background-size: 100% 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  top: -3vh;
+  width: 75vh;
+  height: 20vh;
+}
+
+.timer {
   font-size: 20px;
-  border-radius: 5px;
-  color: #f4ebdd;
-  background-color: #0c0801b6;
+  font-weight: bold;
+  display: flex;
+  padding-top: 8%;
+  justify-content: center;
+  align-items: center;
+  color: #fdf7ef;
 }
 
 button {
@@ -51,10 +87,17 @@ button {
 
 .pause-button {
   position: absolute;
+  width: 6vh;
+  height: 6vh;
   top: 3vh;
   left: 2vw;
   color: #f4ebdd;
-  background-color: #0c0801b6;;
+  background-image: url("/public/images/UI/pause.svg");
+  background-size: 105% 105%;
+    background-position: center;
+  background-color: #0c0801b6;
+  background-repeat: no-repeat;
+
 }
 
 .pause-modal .overlay {
