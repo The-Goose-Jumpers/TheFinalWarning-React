@@ -1,4 +1,5 @@
 .game-view {
+  position: relative; /* Ensure it is the reference point for the pseudo-element */
   height: 100vh;
   background-size: 100% 105%;
   background-position: center;
@@ -10,19 +11,32 @@
   justify-content: center;
 }
 
-.textbox{
-    position: absolute;
-    background-image: url("/public/images/UI/textbox.svg");
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    width: 150vh;
-    height: 25vh;
-    bottom: 7%;
+.game-view::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Adjust the opacity as needed */
+  z-index: 1; /* Ensure it is above the background but below other content */
+  pointer-events: none; /* Ensure it doesn't block interactions */
+}
+
+.textbox {
+  position: absolute;
+  background-image: url("/public/images/UI/textbox.svg");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 150vh;
+  height: 25vh;
+  bottom: 7%;
+  z-index: 2; /* Ensure it is above the overlay */
 }
 
 .dialogue {
@@ -39,6 +53,7 @@
   display: flex;
   margin-top: 20px;
   gap: 20px;
+  z-index: 2;
 }
 
 .topbar{
@@ -47,7 +62,7 @@
     justify-content: space-around;
     align-items: flex-start;
     width: 100%;
-
+    z-index: 2;
 }
 
 .timerbox {
@@ -108,6 +123,7 @@ button {
   width: 100%;
   height: 100%;
   background: #0c0801b6;
+  z-index: 3;
 }
 
 .pause-modal .modal-content {
@@ -121,4 +137,5 @@ button {
   padding: 25px;
   border-radius: 5px;
   flex-direction: column;
+  z-index: 4;
 }

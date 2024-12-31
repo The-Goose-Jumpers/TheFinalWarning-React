@@ -1,6 +1,7 @@
 // src/components/Game.js
 import { useEffect, useState } from "react";
 import "../styles/Game.css";
+import "../styles/Animations.css";
 import GameView from "./GameView";
 import NARRATIVES from "../data/narratives";
 import PauseModal from "./PauseModal";
@@ -24,16 +25,15 @@ function Timer({ minutes }) {
   if (minutes > 0) result.push(`${minutes} minute${minutes > 1 ? 's' : ''}`);
 
   result = result.length > 1
-    ? result.slice(0, -1).join(', ') + ' and ' + result.slice(-1)
-    : result[0];
+      ? result.slice(0, -1).join(', ') + ' and ' + result.slice(-1)
+      : result[0];
 
   return (
-    <span className="timer">Time Left: {result}</span>
+      <span className="timer">Time Left: {result}</span>
   );
 }
 
 function Game() {
-  /** @type {PlayerTraits} */
   const [playerTraits, setPlayerTraits] = useState({
     hasChildren: Math.random() < 0.5,
     hasPets: Math.random() < 0.5,
@@ -45,12 +45,16 @@ function Game() {
   const [narrative, setNarrative] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
+  const [isFadingIn, setIsFadingIn] = useState(true);
 
   useEffect(() => {
     const randomNarrative = NARRATIVES[Math.floor(Math.random() * NARRATIVES.length)];
     setNarrative(randomNarrative);
     setCurrentNode("start");
     setTimeLeft(randomNarrative.timeUntilDisaster);
+    setTimeout(() => {
+      setIsFadingIn(false);
+    }, 500); // Match the duration of the fade-in animation
   }, []);
 
   function handleChoice(selectedChoices) {
@@ -58,17 +62,17 @@ function Game() {
       const choice = narrative.nodes[currentNode].choices.find((choice) => choice.id === choiceId);
       return acc + choice.getScore(playerTraits);
     }, 0);
-  
+
     const totalTimeUsed = selectedChoices.reduce((acc, choiceId) => {
       const choice = narrative.nodes[currentNode].choices.find((choice) => choice.id === choiceId);
       return acc + choice.timeUsed;
     }, 0);
-  
+
     const shouldResetTime = selectedChoices.some((choiceId) => {
       const choice = narrative.nodes[currentNode].choices.find((choice) => choice.id === choiceId);
       return choice.resetTime;
     });
-  
+
     setScore((prevScore) => prevScore + totalScore);
     setChoicesTaken((prevChoices) => [...prevChoices, ...selectedChoices]);
     setTimeLeft((prevTimeLeft) => shouldResetTime ? 0 : prevTimeLeft - totalTimeUsed);
@@ -93,22 +97,23 @@ function Game() {
   const narrativeNode = narrative.nodes[currentNode];
 
   return (
-    <>
-      <div className="topbar">
-        <button className="pause-button" onClick={togglePause}>
-        </button>
-        <div className="timerbox">
-          <Timer minutes={timeLeft} />
+      <>
+        <div className="topbar">
+          <button className="pause-button" onClick={togglePause}>
+          </button>
+          <div className="timerbox">
+            <Timer minutes={timeLeft} />
+          </div>
         </div>
-      </div>
-      <GameView
-        narrativeNode={narrativeNode}
-        onChoice={handleChoice}
-      />
-      {isPaused && (
-        <PauseModal onRestart={resetGame} onResume={togglePause} />
-      )}
-    </>
+        <GameView
+            narrativeNode={narrativeNode}
+            onChoice={handleChoice}
+        />
+        {isPaused && (
+            <PauseModal onRestart={resetGame} onResume={togglePause} />
+        )}
+        {isFadingIn && <div className="fade-in-overlay"></div>}
+      </>
   );
 }
 
