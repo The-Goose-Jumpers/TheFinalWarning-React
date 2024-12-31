@@ -1,5 +1,6 @@
 import NarrativeNode from "../NarrativeNode";
 import Choice from "../Choice";
+import {any} from "../../utils/arrayUtils";
 import {Scenes} from "../assets";
 
 const hurricane2 = {
