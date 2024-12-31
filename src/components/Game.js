@@ -108,6 +108,7 @@ function Game() {
         <GameView
             narrativeNode={narrativeNode}
             onChoice={handleChoice}
+            speed={10}
         />
         {isPaused && (
             <PauseModal onRestart={resetGame} onResume={togglePause} />

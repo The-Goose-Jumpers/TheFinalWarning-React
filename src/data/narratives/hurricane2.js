@@ -131,7 +131,7 @@ const hurricane2 = {
     ]),
     "node6": new NarrativeNode("node6",
         "You went to sleep last night as if nothing happened," +
-        " you are convinced that both you and your house will survive." +
+        " you are convinced that both you and your house will survive. " +
         "Suddenly you hear a noise outside that catches your interest",
         Scenes.LivingRoom,
         [
