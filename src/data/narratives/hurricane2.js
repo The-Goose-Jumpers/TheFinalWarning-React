@@ -1,7 +1,6 @@
 import NarrativeNode from "../NarrativeNode";
 import Choice from "../Choice";
-import {Scenes} from "../ImageLoad";
-import { all } from "../../utils/arrayUtils";
+import {Scenes} from "../assets";
 
 const hurricane2 = {
   id: "hurricane2",
