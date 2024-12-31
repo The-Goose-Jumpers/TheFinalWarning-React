@@ -1,0 +1,15 @@
+.scoreboard{
+    position: fixed; /* Ensure it stays fixed relative to the viewport */
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/public/images/MainMenu/tv.svg");
+    background-size: 100% 100%; /* Covers the entire screen */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Ensures it doesn't scroll */
+    background-color: black;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+}

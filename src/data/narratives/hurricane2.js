@@ -52,7 +52,6 @@ const hurricane2 = {
         return "node9";
     }
   }
-  
     if (currentNode === "node9") {
       if (choicesTaken.includes("b7")) {
         return "node8";

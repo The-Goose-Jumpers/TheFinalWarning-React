@@ -79,6 +79,7 @@ button {
   cursor: pointer;
   color: #f4ebdd;
   background-color: #483516;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .choice-button.selected {

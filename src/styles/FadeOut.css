@@ -1,0 +1,23 @@
+/* Fade-out animation */
+.fade-out-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    animation: fadeOut 1s ease-in-out forwards; /* Customize duration and easing */
+    pointer-events: none; /* Ensure it doesn't block interactions */
+    z-index: 3; /* Ensure it is above other elements */
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 0;
+        background-color: black; /* Ensure the background is black at the start */
+    }
+    100% {
+        opacity: 1;
+        background-color: black; /* Keep the background black throughout */
+    }
+}
