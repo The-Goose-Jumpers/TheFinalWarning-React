@@ -13,7 +13,7 @@ import PauseModal from "./PauseModal";
  * @property {boolean} hasCar - Whether the player has a car
  */
 
-function Timer({ minutes }) {
+function Timer({minutes}) {
   const days = Math.floor(minutes / 1440);
   minutes %= 1440;
   const hours = Math.floor(minutes / 60);
@@ -25,11 +25,11 @@ function Timer({ minutes }) {
   if (minutes > 0) result.push(`${minutes} minute${minutes > 1 ? 's' : ''}`);
 
   result = result.length > 1
-      ? result.slice(0, -1).join(', ') + ' and ' + result.slice(-1)
-      : result[0];
+    ? result.slice(0, -1).join(', ') + ' and ' + result.slice(-1)
+    : result[0];
 
   return (
-      <span className="timer">Time Left: {result}</span>
+    <span className="timer">Time Left: {result}</span>
   );
 }
 
@@ -97,23 +97,23 @@ function Game() {
   const narrativeNode = narrative.nodes[currentNode];
 
   return (
-      <>
-        <div className="topbar">
-          <button className="pause-button" onClick={togglePause}>
-          </button>
-          <div className="timerbox">
-            <Timer minutes={timeLeft} />
-          </div>
+    <>
+      <div className="topbar">
+        <button className="pause-button" onClick={togglePause}>
+        </button>
+        <div className="timerbox">
+          <Timer minutes={timeLeft}/>
         </div>
-        <GameView
-            narrativeNode={narrativeNode}
-            onChoice={handleChoice}
-        />
-        {isPaused && (
-            <PauseModal onRestart={resetGame} onResume={togglePause} />
-        )}
-        {isFadingIn && <div className="fade-in-overlay"></div>}
-      </>
+      </div>
+      <GameView
+        narrativeNode={narrativeNode}
+        onChoice={handleChoice}
+      />
+      {isPaused && (
+        <PauseModal onRestart={resetGame} onResume={togglePause}/>
+      )}
+      {isFadingIn && <div className="fade-in-overlay"></div>}
+    </>
   );
 }
 

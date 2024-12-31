@@ -1,9 +1,8 @@
 import { useState } from "react";
 import ChoiceButton from "./ChoiceButton";
-import {UI} from "../data/ImageLoad";
 
-function GameView({ narrativeNode, onChoice }) {
-  const { dialogue, choices, backgroundImage, allowMultipleChoices } = narrativeNode;
+function GameView({narrativeNode, onChoice}) {
+  const {dialogue, choices, backgroundImage, allowMultipleChoices} = narrativeNode;
   const [selectedChoices, setSelectedChoices] = useState([]);
 
   function handleChoice(choiceId, isSelected) {
@@ -24,25 +23,25 @@ function GameView({ narrativeNode, onChoice }) {
   }
 
   return (
-      <div className="game-view" style={{backgroundImage: `url(${backgroundImage})`}}>
-        <div className="choices">
-          {choices.map((choice) => (
-              <ChoiceButton
-                  key={choice.id}
-                  choice={choice}
-                  onChoice={handleChoice}
-              />
-          ))}
-        </div>
-        <div className="textbox">
-            <div className="dialogue">{dialogue}</div>
-        </div>
-        {allowMultipleChoices && (
-            <button className="confirm-button" onClick={confirmChoices}>
-              Confirm Choices
-            </button>
-        )}
+    <div className="game-view" style={{backgroundImage: `url(${backgroundImage})`}}>
+      <div className="choices">
+        {choices.map((choice) => (
+          <ChoiceButton
+            key={choice.id}
+            choice={choice}
+            onChoice={handleChoice}
+          />
+        ))}
       </div>
+      <div className="textbox">
+        <div className="dialogue">{dialogue}</div>
+      </div>
+      {allowMultipleChoices && (
+        <button className="confirm-button" onClick={confirmChoices}>
+          Confirm Choices
+        </button>
+      )}
+    </div>
   );
 }
 
