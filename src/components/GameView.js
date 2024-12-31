@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import ChoiceButton from "./ChoiceButton";
 
-function GameView({ narrativeNode, onChoice, speed = 100 }) {
+function GameView({ narrativeNode, onChoice, choicesTaken, speed = 100 }) {
     const { dialogue, choices, backgroundImage, allowMultipleChoices } = narrativeNode;
     const [selectedChoices, setSelectedChoices] = useState([]);
     const [displayedText, setDisplayedText] = useState('');
@@ -60,7 +60,7 @@ function GameView({ narrativeNode, onChoice, speed = 100 }) {
             </div>
             {isDialogueComplete && (
                 <div className="choices">
-                    {choices.map((choice) => (
+                     {choices.filter((choice) => !choicesTaken.includes(choice)).map((choice)=>(
                         <ChoiceButton
                             key={choice.id}
                             choice={choice}
@@ -74,7 +74,7 @@ function GameView({ narrativeNode, onChoice, speed = 100 }) {
                     Confirm Choices
                 </button>
             )}
-        </div>
+                </div>
     );
 }
 

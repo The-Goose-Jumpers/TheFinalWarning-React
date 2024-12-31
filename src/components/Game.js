@@ -20,22 +20,22 @@ function Timer({ minutes }) {
   minutes %= 60;
 
   return (
-        <div className="timer">
-          <div className="timer-numbers">
-            <span>{days}</span>
-            <span>:</span>
-            <span>{hours}</span>
-            <span>:</span>
-            <span>{minutes}</span>
-          </div>
-          <div className="timer-labels">
-            <span>day{days !== 1 ? 's' : ''}</span>
-            <span></span>
-            <span>hour{hours !== 1 ? 's' : ''}</span>
-            <span></span>
-            <span>min{minutes !== 1 ? 's' : ''}</span>
-          </div>
+    <div className="timer">
+      <div className="timer-numbers">
+        <span>{days}</span>
+        <span>:</span>
+        <span>{hours}</span>
+        <span>:</span>
+        <span>{minutes}</span>
       </div>
+      <div className="timer-labels">
+        <span>day{days !== 1 ? 's' : ''}</span>
+        <span></span>
+        <span>hour{hours !== 1 ? 's' : ''}</span>
+        <span></span>
+        <span>min{minutes !== 1 ? 's' : ''}</span>
+      </div>
+    </div>
   );
 }
 
@@ -103,25 +103,27 @@ function Game() {
   const narrativeNode = narrative.nodes[currentNode];
 
   return (
-      <>
-        <div className="topbar">
-          <button className="pause-button" onClick={togglePause}>
-          </button>
-          <div className="timerbox">
-            <div className="time-left">Time until disaster:</div>
-            <Timer minutes={timeLeft} />
-          </div>
+    <>
+      <div className="topbar">
+        <button className="pause-button" onClick={togglePause}>
+        
+        </button>
+        <div className="timerbox">
+          <div className="time-left">Time until disaster:</div>
+          <Timer minutes={timeLeft} />
         </div>
-        <GameView
-            narrativeNode={narrativeNode}
-            onChoice={handleChoice}
-            speed={10}
-        />
-        {isPaused && (
-            <PauseModal onRestart={resetGame} onResume={togglePause}/>
-        )}
-        {isFadingIn && <div className="fade-in-overlay"></div>}
-      </>
+      </div>
+      <GameView
+        narrativeNode={narrativeNode}
+        onChoice={handleChoice}
+        choicesTaken={choicesTaken} // Pass choicesTaken to GameView
+        speed={10}
+      />
+      {isPaused && (
+        <PauseModal onRestart={resetGame} onResume={togglePause} />
+      )}
+      {isFadingIn && <div className="fade-in-overlay"></div>}
+    </>
   );
 }
 
