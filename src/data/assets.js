@@ -1,4 +1,4 @@
-const SCENES_BASE_PATH = "${process.env.PUBLIC_URL}/images/Scenes";
+const SCENES_BASE_PATH = `${process.env.PUBLIC_URL}/images/Scenes`;
 
 const Scenes = {
   LivingRoom: `${SCENES_BASE_PATH}/LivingRoom.png`,
