@@ -11,14 +11,14 @@
   justify-content: center;
 }
 
-.game-view::before {
+.game-view.show-choices::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3); /* Adjust the opacity as needed */
+  background-color: rgba(0, 0, 0, 0.6); /* Adjust the opacity as needed */
   z-index: 1; /* Ensure it is above the background but below other content */
   pointer-events: none; /* Ensure it doesn't block interactions */
 }
@@ -75,15 +75,35 @@
   width: 75vh;
   height: 20vh;
 }
+.time-left {
+  position: absolute;
+  top: 30%;
+  left: 15%;
+  font-size: 23px;
+  font-weight: bold;
+  color: #fdf7ef;
+}
 
 .timer {
-  font-size: 20px;
+  font-size: 23px;
   font-weight: bold;
   display: flex;
-  padding-top: 8%;
+  padding: 7% 0 0 35%; /* top right bottom left */
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   color: #fdf7ef;
+}
+
+.timer-numbers {
+  display: flex;
+  gap: 5px;
+}
+
+.timer-labels {
+  display: flex;
+  font-size: 10px;
+  gap: 5px;
 }
 
 button {

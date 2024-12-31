@@ -13,23 +13,29 @@ import PauseModal from "./PauseModal";
  * @property {boolean} hasCar - Whether the player has a car
  */
 
-function Timer({minutes}) {
+function Timer({ minutes }) {
   const days = Math.floor(minutes / 1440);
   minutes %= 1440;
   const hours = Math.floor(minutes / 60);
   minutes %= 60;
 
-  let result = [];
-  if (days > 0) result.push(`${days} day${days > 1 ? 's' : ''}`);
-  if (hours > 0) result.push(`${hours} hour${hours > 1 ? 's' : ''}`);
-  if (minutes > 0) result.push(`${minutes} minute${minutes > 1 ? 's' : ''}`);
-
-  result = result.length > 1
-      ? result.slice(0, -1).join(', ') + ' and ' + result.slice(-1)
-      : result[0];
-
   return (
-      <span className="timer">Time Left: {result}</span>
+        <div className="timer">
+          <div className="timer-numbers">
+            <span>{days}</span>
+            <span>:</span>
+            <span>{hours}</span>
+            <span>:</span>
+            <span>{minutes}</span>
+          </div>
+          <div className="timer-labels">
+            <span>day{days !== 1 ? 's' : ''}</span>
+            <span></span>
+            <span>hour{hours !== 1 ? 's' : ''}</span>
+            <span></span>
+            <span>min{minutes !== 1 ? 's' : ''}</span>
+          </div>
+      </div>
   );
 }
 
@@ -102,6 +108,7 @@ function Game() {
           <button className="pause-button" onClick={togglePause}>
           </button>
           <div className="timerbox">
+            <div className="time-left">Time until disaster:</div>
             <Timer minutes={timeLeft} />
           </div>
         </div>

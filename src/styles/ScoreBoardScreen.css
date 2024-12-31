@@ -1,45 +1,47 @@
 .scoreboard {
-  position: fixed; /* Ensure it stays fixed relative to the viewport */
+  position: fixed;
   width: 100vw;
   height: 100vh;
   background-image: url("/public/images/MainMenu/tv.svg");
-  background-size: 100% 100%; /* Covers the entire screen */
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* Ensures it doesn't scroll */
+  background-attachment: fixed;
   background-color: black;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
+  flex-direction: row;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: 1fr;
 }
 
 .scoreboard-screen {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: 1fr;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
 }
 
 .score-display {
+  grid-row: 1;
+  grid-column: 1;
   width: 100%;
   height: 100%;
-  padding: 7% 35% 7% 20%; /* top right bottom left */
+  padding: 7% 35% 7% 20%;
   z-index: 2;
-  /*display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;*/
 }
 
 .scoreboard-controls {
-  padding: 11.8% 19% 0 0; /* top right bottom left */
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 25.5%;
+  right: 19.1%;
   z-index: 3;
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+  padding: 0;
 }
 
 .back-button {
@@ -63,4 +65,29 @@
 .back-button:active {
   background-color: #3b2a12;
   transform: scale(0.95);
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .back-button {
+    width: 10vh;
+    height: 10vh;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .back-button {
+    width: 8vh;
+    height: 8vh;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .back-button {
+    width: 6vh;
+    height: 6vh;
+    font-size: 0.6rem;
+  }
 }

@@ -54,7 +54,7 @@ function GameView({ narrativeNode, onChoice, speed = 100 }) {
     }
 
     return (
-        <div className="game-view" style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div className={`game-view ${isDialogueComplete ? 'show-choices' : ''}`} style={{ backgroundImage: `url(${backgroundImage})` }}>
             <div className="textbox">
                 <div className="dialogue">{displayedText}</div>
             </div>
