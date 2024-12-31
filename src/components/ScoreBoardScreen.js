@@ -27,7 +27,7 @@ function ScoreBoardScreen() {
         <div className={`scoreboard-screen ${isFading ? 'fade-out' : ''}`}>
           <h1 className="scoreboard-title"> Scoreboard </h1>
           <div className="scoreboard-controls">
-            <BackButton isFading={setIsFading} />
+            <BackButton setIsFading={setIsFading} />
           </div>
         </div>
         {isFading && <div className="fade-out-overlay"></div>}
