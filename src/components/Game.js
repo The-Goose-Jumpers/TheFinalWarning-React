@@ -13,7 +13,7 @@ import PauseModal from "./PauseModal";
  * @property {boolean} hasCar - Whether the player has a car
  */
 
-function Timer({ minutes }) {
+function Timer({minutes}) {
   const days = Math.floor(minutes / 1440);
   minutes %= 1440;
   const hours = Math.floor(minutes / 60);
@@ -111,7 +111,7 @@ function Game() {
             speed={10}
         />
         {isPaused && (
-            <PauseModal onRestart={resetGame} onResume={togglePause} />
+            <PauseModal onRestart={resetGame} onResume={togglePause}/>
         )}
         {isFadingIn && <div className="fade-in-overlay"></div>}
       </>

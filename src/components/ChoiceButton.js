@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ChoiceButton({ choice, onChoice }) {
+function ChoiceButton({choice, onChoice}) {
   const [selected, setSelected] = useState(false);
 
   function handleClick() {
