@@ -1,17 +1,9 @@
-// src/components/Game.js
 import { useEffect, useState } from "react";
 import "../styles/Game.css";
 import "../styles/Animations.css";
 import GameView from "./GameView";
 import NARRATIVES from "../data/narratives";
 import PauseModal from "./PauseModal";
-
-/**
- * @typedef {Object} PlayerTraits
- * @property {boolean} hasChildren - Whether the player has children
- * @property {boolean} hasPets - Whether the player has pets
- * @property {boolean} hasCar - Whether the player has a car
- */
 
 function Timer({ minutes }) {
   const days = Math.floor(minutes / 1440);
@@ -20,30 +12,67 @@ function Timer({ minutes }) {
   minutes %= 60;
 
   return (
-    <div className="timer">
-      <div className="timer-numbers">
-        <span>{days}</span>
-        <span>:</span>
-        <span>{hours}</span>
-        <span>:</span>
-        <span>{minutes}</span>
+      <div className="timer">
+        <div className="timer-numbers">
+          <span>{days}</span>
+          <span>:</span>
+          <span>{hours}</span>
+          <span>:</span>
+          <span>{minutes}</span>
+        </div>
+        <div className="timer-labels">
+          <span>day{days !== 1 ? 's' : ''}</span>
+          <span></span>
+          <span>hour{hours !== 1 ? 's' : ''}</span>
+          <span></span>
+          <span>min{minutes !== 1 ? 's' : ''}</span>
+        </div>
       </div>
-      <div className="timer-labels">
-        <span>day{days !== 1 ? 's' : ''}</span>
-        <span></span>
-        <span>hour{hours !== 1 ? 's' : ''}</span>
-        <span></span>
-        <span>min{minutes !== 1 ? 's' : ''}</span>
+  );
+}
+
+function Worries({ playerTraits }) {
+  return (
+      <div className="worries">
+        <div className="worries-title">Worries:</div>
+        <div className="worries-list">
+          {playerTraits.hasChildren &&
+              !playerTraits.hasPets &&
+              <div className="worries-item">
+                You have kids!
+              </div>
+          }
+          {playerTraits.hasPets &&
+              !playerTraits.hasChildren &&
+              <div className="worries-item">
+                You have pets!
+              </div>
+          }
+          {playerTraits.hasChildren &&
+              playerTraits.hasPets &&
+              <div className="worries-item">
+                You have kids and pets!
+              </div>
+          }
+          {!playerTraits.hasChildren &&
+              !playerTraits.hasPets &&
+              <div className="worries-item">
+                You seem to be worry-free!
+                You dont have responsibilities for another living being!
+              </div>
+          }
+        </div>
       </div>
-    </div>
   );
 }
 
 function Game() {
   const [playerTraits, setPlayerTraits] = useState({
-    hasChildren: Math.random() < 0.5,
-    hasPets: Math.random() < 0.5,
-    hasCar: Math.random() < 0.5,
+    hasChildren: false,
+    hasPets: false,
+    hasFamilyMembersCantEvacuate: false,
+    hasFamilyInTheArea: false,
+    hasFriendsInTheArea: false,
   });
   const [currentNode, setCurrentNode] = useState("start");
   const [choicesTaken, setChoicesTaken] = useState([]);
@@ -52,6 +81,7 @@ function Game() {
   const [isPaused, setIsPaused] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
   const [isFadingIn, setIsFadingIn] = useState(true);
+  const [isPulledDown, setIsPulledDown] = useState(false);
 
   useEffect(() => {
     const randomNarrative = NARRATIVES[Math.floor(Math.random() * NARRATIVES.length)];
@@ -61,6 +91,10 @@ function Game() {
     setTimeout(() => {
       setIsFadingIn(false);
     }, 500); // Match the duration of the fade-in animation
+    setPlayerTraits({
+        hasChildren: Math.random() < 0.5,
+        hasPets: Math.random() < 0.5,
+    })
   }, []);
 
   function handleChoice(selectedChoices) {
@@ -98,32 +132,38 @@ function Game() {
     setIsPaused(!isPaused);
   }
 
+  function togglePullDown() {
+    setIsPulledDown(!isPulledDown);
+  }
+
   if (!narrative || !currentNode) return <div>Loading...</div>;
 
   const narrativeNode = narrative.nodes[currentNode];
 
   return (
-    <>
-      <div className="topbar">
-        <button className="pause-button" onClick={togglePause}>
-        
-        </button>
-        <div className="timerbox">
-          <div className="time-left">Time until disaster:</div>
-          <Timer minutes={timeLeft} />
+      <>
+        <div className="topbar">
+          <button className="pause-button" onClick={togglePause}></button>
+          <div className={`timerbox ${isPulledDown ? 'pulled-down' : ''}`}>
+            <div className="worries-display">
+              <Worries playerTraits={playerTraits} />
+            </div>
+            <div className="time-left">Time until disaster:</div>
+            <Timer minutes={timeLeft} />
+            <button className="pull-down-button" onClick={togglePullDown}></button>
+          </div>
         </div>
-      </div>
-      <GameView
-        narrativeNode={narrativeNode}
-        onChoice={handleChoice}
-        choicesTaken={choicesTaken} // Pass choicesTaken to GameView
-        speed={10}
-      />
-      {isPaused && (
-        <PauseModal onRestart={resetGame} onResume={togglePause} />
-      )}
-      {isFadingIn && <div className="fade-in-overlay"></div>}
-    </>
+        <GameView
+            narrativeNode={narrativeNode}
+            onChoice={handleChoice}
+            choicesTaken={choicesTaken} // Pass choicesTaken to GameView
+            speed={10}
+        />
+        {isPaused && (
+            <PauseModal onRestart={resetGame} onResume={togglePause} />
+        )}
+        {isFadingIn && <div className="fade-in-overlay"></div>}
+      </>
   );
 }
 

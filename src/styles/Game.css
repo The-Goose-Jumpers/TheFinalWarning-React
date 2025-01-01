@@ -21,6 +21,7 @@
   background-color: rgba(0, 0, 0, 0.6); /* Adjust the opacity as needed */
   z-index: 1; /* Ensure it is above the background but below other content */
   pointer-events: none; /* Ensure it doesn't block interactions */
+  transition: ease-in 0.7s; /* Adjust the duration and easing as needed */
 }
 
 .textbox {
@@ -52,6 +53,7 @@
 .choices {
   display: flex;
   margin-top: 20px;
+  padding: 0 10% 0 10%; /*top right bottom left*/
   gap: 20px;
   z-index: 2;
 }
@@ -62,7 +64,40 @@
   justify-content: space-around;
   align-items: flex-start;
   width: 100%;
-  z-index: 2;
+  z-index: 4;
+}
+
+.worries-display{
+  position: absolute;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 6% 6% 22% 5%; /*top right bottom left*/
+}
+
+.worries {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #ffffff;
+}
+
+.worries-title {
+  font-size: 5vh;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.worries-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.worries-item {
+  font-size: 20px;
 }
 
 .timerbox {
@@ -71,13 +106,36 @@
   background-size: 100% 100%;
   background-position: top;
   background-repeat: no-repeat;
-  top: -3vh;
+  top: -46vh;
   width: 75vh;
-  height: 20vh;
+  height: 60vh;
+  transition: top 0.7s ease;
 }
+
+.timerbox.pulled-down {
+  top: -2.5vh; /* Adjust this value as needed */
+}
+
+.pull-down-button {
+  position: absolute;
+  bottom: 0;
+  left: 39%;
+  width: 16vh;
+  height: 1vh;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgba(72, 53, 22, 0);
+}
+
+.pull-down-button:hover {
+  background-color: rgba(72, 53, 22, 0);
+  box-shadow: none;
+}
+
 .time-left {
   position: absolute;
-  top: 30%;
+  top: 81%;
   left: 15%;
   font-size: 23px;
   font-weight: bold;
@@ -88,7 +146,7 @@
   font-size: 23px;
   font-weight: bold;
   display: flex;
-  padding: 7% 0 0 35%; /* top right bottom left */
+  padding: 64% 0 0 35%; /* top right bottom left */
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -133,7 +191,6 @@ button {
   background-position: center;
   background-color: #0c0801b6;
   background-repeat: no-repeat;
-
 }
 
 .pause-modal .overlay {
@@ -143,7 +200,7 @@ button {
   width: 100%;
   height: 100%;
   background: #0c0801b6;
-  z-index: 3;
+  z-index: 4;
 }
 
 .pause-modal .modal-content {
@@ -159,3 +216,4 @@ button {
   flex-direction: column;
   z-index: 4;
 }
+
