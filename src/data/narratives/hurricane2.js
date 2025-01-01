@@ -9,7 +9,13 @@ const hurricane2 = {
     if (currentNode === "start") {
       if (choicesTaken.includes("a")) {
         return "node4";
-      } else if (choicesTaken.includes("b")) {
+      }
+        else if (any(choicesTaken, "f", "e")) {
+        return "node3";
+      }
+    }
+    if (currentNode === "node3") {
+      if (choicesTaken.includes("b")) {
         return "node8";
       } else if (choicesTaken.includes("c")) {
         return "node10";
@@ -34,6 +40,9 @@ const hurricane2 = {
     if (currentNode === "node6") {
       if (choicesTaken.includes("a11")) {
         return "node7";
+      }
+      else if (choicesTaken.includes("a12")) {
+        return "badend";
       }
     }
     if (currentNode === "node7") {
@@ -80,6 +89,8 @@ const hurricane2 = {
         return "node13";
       } else if (choicesTaken.includes("c13")) {
         return "node9";
+      } else if (choicesTaken.includes("c14")) {
+        return "bademd";
       }
     }
     if (currentNode === "node12" && any(choicesTaken, "c21", "c22", "c23", "c24", "c25", "c26")) {
@@ -99,12 +110,22 @@ const hurricane2 = {
   timeUntilDisaster: 1440,
   nodes: {
     "start": new NarrativeNode("start",
-        "You just heard the news about the hurricane",
+        "You just heard the news about the category 4 hurricane that will be reaching your area in one day."+
+        "In the map it says that you are in an evacuation area, each means it might be dangerous to stay"+
+        " It's currently midnight, you were about to go to sleep, what will you do now?",
         Scenes.LivingRoom,
         [
-        new Choice("a", "I don´t think the situation is that serious.", -5,0),
-        new Choice("b", "I need to prepare my house!", 5,0),
-        new Choice("c", "I need to evacuate!", 5,0),
+        new Choice("a", "I don't think the situation is that serious,"+
+          " I will just go to sleep for now", -5,600),
+        new Choice("e", "I will go to sleep and start preparing tomorrow ", 5,600),
+        new Choice("f", "I need to start the preparations right now"+
+          " and evacuate as soon as possible", 10,20),
+    ]),
+      "node3": new NarrativeNode("node3","You are ready to prepare for the hurricane, what should you do first?",
+        Scenes.LivingRoom,
+        [
+        new Choice("b", "I need to prepare my house!", 5,20),
+        new Choice("c", "I have to evacuate!", 5,60),
     ]),
     "node4": new NarrativeNode("node4",
         "They say this every time and it always turns out to be fine",
@@ -135,25 +156,24 @@ const hurricane2 = {
         " you underestimated this hurricane",
         Scenes.LivingRoom,
         [
-        new Choice("a13", "Oh no, I need to prepare my house, I don't have to evacuate!"+ 10,0),
+        new Choice("a13", "Oh no, I need to prepare my house, I don't have time to evacuate!"+ 10,0),
         new Choice("a14", "When the hurricane arraives, I will just hide in my inside room.", 0,0,true), 
-        new Choice("a15", "I will still try to evacuate!", 0,5),
+        new Choice("a15", "I will still try to evacuate!", 5,5),
     ]),
     "node8": new NarrativeNode("node8",
-        "After hearing the news you decide to prepare your house to make sure it is ready for the storm, " +
-        "what should you do first?",
+        "There are certain things that should be done around the house to ensure that," +
+        " both you and your property will stay safe during the hurricane, what should you do first?",
         Scenes.LivingRoom,
         [
-        new Choice("b0", "Fill the bathtub with water", 5,10),
-        new Choice("b1", "Place sandbags to block doorways and prevent flooding.", 5,60),
-        new Choice("b2", "Barricade windows and doors", 10,-120),
+        new Choice("b0", "Fill the bathtub with water", 5,30),
+        new Choice("b1", "Place sandbags to block doorways and prevent flooding.", 5,120),
+        new Choice("b2", "Barricade windows and doors", 10,120),
         new Choice("b3", "Move outdoor furniture and decorations inside", 10,120),
         new Choice("b4", "Stock up on food, water, batteries and other supplies", 15,180),
         new Choice("b5", "Prepare a safe room in your house", 5,60),
-        new Choice("b6", "Move valuables to higher grounds", 10,30),
+        new Choice("b6", "Move valuables to higher grounds", 10,60),
     ]),
-    "node9": new NarrativeNode("node9",
-        "You finished your previous task, what should you do next?",
+    "node9": new NarrativeNode("node9","You finished preparing your house, you are exausted and need a break, what should you do next?",
         Scenes.LivingRoom,
         [
         new Choice("b7", "I should keep preparing the house", 10,0),/*goes back to node8*/
@@ -171,92 +191,13 @@ const hurricane2 = {
         new Choice("c3", "Evacuate right away", -5,0),
     ]),
     "node11": new NarrativeNode("node11", "You have gathered everyone and are ready to evacuate," +
-        " but you remember some hotels and shelters don´t accept pets, what should you do?",
+        " but you remember some hotels and shelters don't accept pets, what should you do?",
       Scenes.Outside,
-      [
-    new Choice("c11", "I will have to leave them behind", -5,0),
-    new Choice("c12", "I will take them with me anyways!", 10,0),
-    new Choice("c13", "If I can´t take all of my pets"+"then i am not going anywhere I will stay home ", 5,0), 
+    [
+      new Choice("c11", "I will have to leave them behind", -5,0),
+      new Choice("c12", "I will take them with me anyways!", 10,0),
+      new Choice("c13", "If I can't take all of my pets"+"then i am not going anywhere I will stay home ", 5,0), 
     ]),
-    "node12": new NarrativeNode("node12","You will be away for some time, so what items should you pack?",
-      Scenes.LivingRoom,
-      [
-        new Choice("a", "I don´t think the situation is that serious.", -5, 0),
-        new Choice("b", "I need to prepare my house!", 5, 0),
-        new Choice("c", "I need to evacuate!", 5, 0),
-      ]),
-    "node4": new NarrativeNode("node4",
-      "They say this every time and it always turns out to be fine",
-      Scenes.LivingRoom,
-      [
-        new Choice("a1", "I should just ignore and continue my daily routine.", -5, 600),
-        new Choice("a2", "I should call someone to see what they say about this.", 5, 20),
-      ]),
-    "node5": new NarrativeNode("node5",
-      "The person says the situation is very serious, they are getting ready to evacuate",
-      Scenes.LivingRoom,
-      [
-        new Choice("a3", "This is ridiculous, I will be fine everyone is just exaggerating. ", -10, 600),
-        new Choice("a4", "This is serious I will try to evacuate.", 10, 0),
-        new Choice("a5", "I will prepare my house.", 5, 0),
-      ]),
-    "node6": new NarrativeNode("node6",
-      "You went to sleep last night as if nothing happened," +
-      " you are convinced that both you and your house will survive." +
-      "Suddenly you hear a noise outside that catches your interest",
-      Scenes.LivingRoom,
-      [
-        new Choice("a11", "You look outside the window.", 0, 5),
-        new Choice("a12", "You go back to sleep.", -10, 0, true), /*bad ending*/
-      ]),
-    "node7": new NarrativeNode("node7",
-      "You see the trees shaking and the winds are getting stronger," +
-      " you underestimated this hurricane",
-      Scenes.LivingRoom,
-      [
-        new Choice("a13", "You desperately try to prepare your house" +
-          " with the time you have left.", 10, 0),
-        new Choice("a14", "You hide in an indoor space in your house until the storm is over.", 0, 0, true), /*bad ending*/
-      ]),
-    "node8": new NarrativeNode("node8",
-      "After hearing the news you decide to prepare your house to make sure it is ready for the storm, " +
-      "what should you do first?",
-      Scenes.LivingRoom,
-      [
-        new Choice("b0", "Fill the bathtub with water", 5, 10),
-        new Choice("b1", "Place sandbags to block doorways and prevent flooding.", 5, 60),
-        new Choice("b2", "Barricade windows and doors", 10, -120),
-        new Choice("b3", "Move outdoor furniture and decorations inside", 10, 120),
-        new Choice("b4", "Stock up on food, water, batteries and other supplies", 15, 180),
-        new Choice("b5", "Prepare a safe room in your house", 5, 60),
-        new Choice("b6", "Move valuables to higher grounds", 10, 30),
-      ]),
-    "node9": new NarrativeNode("node9",
-      "You finished your previous task, what should you do next?",
-      Scenes.LivingRoom,
-      [
-        new Choice("b7", "I should keep preparing the house", 10, 0),/*goes back to node8*/
-        new Choice("b8", "I am exhausted, I will distract myself a little", -5, 180), /*goes back to node 9*/
-        new Choice("b9", "I will go check on my neighbors/family members they might need help", 5, 120), /*goes back to node 9*/
-        new Choice("b10", "I think I did everything i had to do so now I will just wait", 0, 0, true), /*sets timer to 0*/
-        new Choice("b11", "I think I should evacuate now", 10, 0),
-      ]),
-    "node10": new NarrativeNode("node10",
-      "You decided to evacuate, is there anything you want to do before you evacuate?",
-      Scenes.LivingRoom,
-      [
-        new Choice("c1", "Gather loved ones to evacuate with you", 10, 120), /*goes to node13*/
-        new Choice("c2", "Pack items to bring with you", 10, 0),
-        new Choice("c3", "Evacuate right away", -5, 0),
-      ]),
-    "node11": new NarrativeNode("node11", "You have gathered everyone and are ready to evacuate," +
-      " but you remember some hotels and shelters don´t accept pets, what should you do?",
-      Scenes.Outside,
-      [
-        new Choice("c11", "I will have to leave them behind", -5, 0),
-        new Choice("c12", "I will take them with me anyways!", 10, 0),
-        new Choice("c13", "If I can´t take all of my pets" + "then i am not going anywhere I will stay home ", 5, 0),
-      ]),
     "node12": new NarrativeNode("node12", "You will be away for some time, so what items should you pack?",
       Scenes.LivingRoom,
       [
@@ -276,9 +217,10 @@ const hurricane2 = {
         new Choice("c34", "Drive to a different city", 10,0),
         new Choice("c35", "Go to a gas station to fill your car's gas tank", 5,180),
     ]),
-    "goodend": new NarrativeNode("goodend", "You have successfully evacuated and are safe.",),
+    "goodend": new NarrativeNode("goodend", "You have survived the hurricane",),
     "badend": new NarrativeNode("badend", "You have died in the hurricane.",),
   }
+  
 };
 
 export default hurricane2;

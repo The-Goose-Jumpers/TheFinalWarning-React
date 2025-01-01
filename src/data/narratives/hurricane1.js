@@ -66,13 +66,38 @@ const hurricane1 = {
       if (choicesTaken.includes("b7")) {
         return "node8";
       } else if (choicesTaken.includes("b8")) {
-        return "node9";
+        return "node9.1";
       } else if (choicesTaken.includes("b9")) {
-        return "node9";
+        return "node9.2";
+      } else if (choicesTaken.includes("b10")) {
+        return "hurri1";
       } else if (choicesTaken.includes("b11")) {
         return "node10";
       }
     }
+    if (currentNode === "node9.1") {
+      if (choicesTaken.includes("b12")) {
+        return "node8";
+      } else if (choicesTaken.includes("b13")) {
+        return "node9.2";
+      } else if (choicesTaken.includes("b14")) {
+        return "hurri1";
+      } else if (choicesTaken.includes("b15")) {
+        return "node10";
+      }
+    }
+    if (currentNode === "node9.2") {
+      if (choicesTaken.includes("b16")) {
+        return "node8";
+      } else if (choicesTaken.includes("b17")) {
+        return "node9.1";
+      } else if (choicesTaken.includes("b18")) {
+        return "hurri1";
+      } else if (choicesTaken.includes("b19")) {
+        return "node10";
+      }
+    }
+
     if (currentNode === "node10") {
       if (choicesTaken.includes("c1")) {
         return "node11";
@@ -110,7 +135,7 @@ const hurricane1 = {
   timeUntilDisaster: 2880,
   nodes: {
     "start": new NarrativeNode("start",
-        "You just heard the news about the category 5 hurricane that will be reaching your area in 2 days."+
+        "You just heard the news about the category 4 hurricane that will be reaching your area in 2 days."+
         "In the map it says that you are in an evacuation area, each means it might be dangerous to stay"+
         " It's currently midnight, you were about to go to sleep, what will you do now?",
         Scenes.LivingRoom,
@@ -177,11 +202,31 @@ const hurricane1 = {
         Scenes.LivingRoom,
         [
         new Choice("b7", "I should keep preparing the house", 10,0),/*goes back to node8*/
-        new Choice("b8", "I am exhausted, I will distract myself a little", -5,180), /*goes back to node 9*/
-        new Choice("b9", "I will go check on my neighbors/family members, they might need help", 5,120), /*goes back to node 9*/
+        new Choice("b8", "I am exhausted, I will distract myself a little", -5,300), /*goes back to node 9*/
+        new Choice("b9", "I will go check on my neighbors/family members, they might need help", 5,180), /*goes back to node 9*/
         new Choice("b10", "I think I did everything i had to do so now I will just wait", 0,0,true), /*sets timer to 0*/
         new Choice("b11", "I think I should evacuate now", 10,0),
     ]),
+    "node9.1": new NarrativeNode("node9.1","You decided to do one of your favorite activities to get some rest and relax"+
+        "You are now feeling less stressed, but time flies it's been 5 hours, what should you do now?",
+      Scenes.LivingRoom,
+      [
+      new Choice("b12", "I should keep preparing the house", 10,0),/*goes back to node8*/
+      new Choice("b13", "I will go check on my neighbors/family members, they might need help", 5,120), /*goes back to node 9*/
+      new Choice("b14", "I think I did everything i had to do so now I will just wait", 0,0,true), /*sets timer to 0*/
+      new Choice("b15", "I think I should evacuate now", 10,0),
+  ]),
+    "node9.2": new NarrativeNode("node9.2", 
+        "You decide to check on your neighbors and family members. Some of them need help securing their homes, and you spend a few hours assisting them." + 
+        " While you feel good about helping others, the hurricane is getting closer. What should you do now?",
+        Scenes.Outside,
+        [
+            new Choice("b16", "I should keep preparing the house", 10, 0), /*goes back to node8*/
+            new Choice("b17", "I am exhausted, I will distract myself a little", -5, 300), /*goes to node9.1*/
+            new Choice("b18", "I think I did everything I had to do so now I will just wait", 0, 0, true), /*sets timer to 0*/
+            new Choice("b19", "I think I should evacuate now", 10, 0),
+        ]
+    ),
     "node10": new NarrativeNode("node10",
         "You decided to evacuate, is there anything you want to do before you evacuate?",
         Scenes.LivingRoom,
@@ -217,10 +262,34 @@ const hurricane1 = {
         new Choice("c34", "Drive to a different city", 10,0),
         new Choice("c35", "Go to a gas station to fill your car's gas tank", 5,180),
     ]),
-    "goodend": new NarrativeNode("goodend", "You have survived the hurricane",),
-    "badend": new NarrativeNode("badend", "You have died in the hurricane.",),
-  }
-  
-};
+// Hurricane Event Nodes
+    "nodeHurri1": new NarrativeNode("nodeHurri1","The hurricane has arrived. The sky is dark, and the howling winds shake"+
+    " the very foundation of your house. Debris flies past your windows, and the power flickers ominously."+
+    " You realize this is a critical moment—your actions now could mean the difference between survival and disaster.",
+    Scenes.Outside,
+    [
+      new Choice("h", "Distract yourself and hope for the best.", -10, 0), 
+      new Choice("h0", "Step outside to take pictures of the storm to post online.", -20, 0), 
+      new Choice("h1", "Find shelter in an interior room with no windows.", 10, 0), 
+      new Choice("h2", "Quickly shut off the gas and electricity.", 15, 0), //goes to nodeHurri2
+      new Choice("h3", "Try to control the flooding inside the house.", 20, 0), //goes to nodeHurri3
+    ]
+  ),
+  "nodeHurri2": new NarrativeNode("nodeHurri1","You rush to turn off the gas and electricity,"+
+    "reducing the risk of fires or electrical hazards. The house goes silent except for the storm’s roar.",
+    Scenes.Outside,
+    [
+      new Choice("h4", "Distract yourself and hope for the best.", -10, 0), 
+      new Choice("h5", "Step outside to take pictures of the storm to post online", -20, 0), 
+      new Choice("h6", "Find shelter in an interior room with no windows.", 10, 0), 
+      new Choice("h7", "Try to control the flooding inside the house.", 20, 0), 
+    ]
+  ),
+
+      "goodend": new NarrativeNode("goodend", "You have survived the hurricane",),
+      "badend": new NarrativeNode("badend", "You have died in the hurricane.",),
+    }
+    
+  };
 
 export default hurricane1;
