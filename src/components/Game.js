@@ -4,6 +4,7 @@ import "../styles/Animations.css";
 import GameView from "./GameView";
 import NARRATIVES from "../data/narratives";
 import PauseModal from "./PauseModal";
+import Worries from "../data/Worries";
 
 function Timer({ minutes }) {
   const days = Math.floor(minutes / 1440);
@@ -31,48 +32,12 @@ function Timer({ minutes }) {
   );
 }
 
-function Worries({ playerTraits }) {
-  return (
-      <div className="worries">
-        <div className="worries-title">Worries:</div>
-        <div className="worries-list">
-          {playerTraits.hasChildren &&
-              !playerTraits.hasPets &&
-              <div className="worries-item">
-                You have kids!
-              </div>
-          }
-          {playerTraits.hasPets &&
-              !playerTraits.hasChildren &&
-              <div className="worries-item">
-                You have pets!
-              </div>
-          }
-          {playerTraits.hasChildren &&
-              playerTraits.hasPets &&
-              <div className="worries-item">
-                You have kids and pets!
-              </div>
-          }
-          {!playerTraits.hasChildren &&
-              !playerTraits.hasPets &&
-              <div className="worries-item">
-                You seem to be worry-free!
-                You dont have responsibilities for another living being!
-              </div>
-          }
-        </div>
-      </div>
-  );
-}
-
 function Game() {
   const [playerTraits, setPlayerTraits] = useState({
-    hasChildren: false,
     hasPets: false,
-    hasFamilyMembersCantEvacuate: false,
-    hasFamilyInTheArea: false,
-    hasFriendsInTheArea: false,
+    hasElderyNeighbors: false,
+    hasFamilyMemberCantEvacuate: false,
+    hasExpensiveItems: false,
   });
   const [currentNode, setCurrentNode] = useState("start");
   const [choicesTaken, setChoicesTaken] = useState([]);
@@ -92,8 +57,10 @@ function Game() {
       setIsFadingIn(false);
     }, 500); // Match the duration of the fade-in animation
     setPlayerTraits({
-        hasChildren: Math.random() < 0.5,
-        hasPets: Math.random() < 0.5,
+        hasPets: Math.random() > 0.5,
+        hasElderyNeighbors: Math.random() > 0.5,
+        hasFamilyMemberCantEvacuate: Math.random() > 0.5,
+        hasExpensiveItems: Math.random() > 0.5,
     })
   }, []);
 
