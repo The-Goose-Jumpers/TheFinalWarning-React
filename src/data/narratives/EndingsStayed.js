@@ -15,7 +15,7 @@ export const badEnd = new NarrativeNode( //ignores the warning
     " The relentless roar of the hurricane fills the room, but you convince yourself that staying calm is the best option."+
     " Fortunetly all the preparations were enough for the house to stay steady and not be severely damaged."+
     " You and your loved ones are safe, and you feel a sense of relief knowing you made the right decisions.",
-    Scenes.BadEnding,
+    Scenes.Outside,
     []
   );
 
@@ -25,7 +25,7 @@ export const badEnd = new NarrativeNode( //ignores the warning
     " The relentless roar of the hurricane fills the room, but you convince yourself that staying calm is the best option."+
     " Even tho you made some preparations, it wasn't enough to fully avoid the impact of the hurricane."+
     " The hurricane's intensity caught you off guard, and your house ended up being destroyed by the storm.",
-    Scenes.BadEnding,
+    Scenes.BadEndStay,
     []
   );
 
@@ -34,7 +34,7 @@ export const badEnd = new NarrativeNode( //ignores the warning
     "You step outside with your phone, eager to capture the storm. The winds are far stronger than you imagined,"+
     "and debris whirls dangerously around you. You end up being cought by the storm, a heavy object comes flying towards you."+
     " You try to dodge it, but it hits you and you end up dying on the spotS"+
-    Scenes.Outside,
+    Scenes.BadEndStay,
     []
 );
 // Good and Bad Endings for "Find shelter in an interior room with no windows"
@@ -42,7 +42,7 @@ export const goodEndInterior = new NarrativeNode(
     "goodEndInterior",
     "You take shelter in a windowless interior room, where you are protected from flying debris and the worst of the storm."+
     " Your precautions pay off, and you and your family remain safe until the hurricane passes.",
-    Scenes.SafeRoom,
+    Scenes.Outside,
     []
   );
   
@@ -50,7 +50,7 @@ export const goodEndInterior = new NarrativeNode(
     "You find shelter in an interior room, but rising floodwaters seep in faster than you anticipated. "+
     " Despite your efforts to stay safe,the flooding ends up compromising the room's",+
     "leaving you stuck and with no way out, you end up dying.",
-    Scenes.SafeRoom,
+    Scenes.BadEndStay,
     []
   );
   
@@ -61,7 +61,7 @@ export const goodEndInterior = new NarrativeNode(
     " your efforts keep the flooding from causing severe damange"+
     " Despite the damage caused by the hurricane, you are safe,"+
     " and you feel a sense of relief knowing you made the right decisions.",
-    Scenes.FloodedRoom,
+    Scenes.GoodEndFlood,
     []
   );
   
@@ -70,7 +70,7 @@ export const goodEndInterior = new NarrativeNode(
     "Despite your best efforts to control the flooding, the water level rises uncontrollably, overwhelming your home."+
     "You find yourself trapped inside as the water reache s the ceiling, forcing you to climb to precarious higher ground"+
     " through a window. Your house is completely destroyed, and you narrowly escape with your life",
-    Scenes.FloodedRoom,
+    Scenes.BadEndFlood,
     []
   );
   

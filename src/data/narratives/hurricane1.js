@@ -1,8 +1,8 @@
 import NarrativeNode from "../NarrativeNode";
 import Choice from "../Choice";
-import { any } from "../../utils/arrayUtils";
+import { all, any } from "../../utils/arrayUtils";
 import { Scenes } from "../assets";
-import { goodEndShelter, goodEndHotel, goodEndFriendHouse,badEndRoad,goodEndRoad,goodEnd,goodEnd1,badEndShortcut } from "./EndingsEvacuated";  
+import { goodEndShelter, goodEndHotel, goodEndFriendHouse,badEndRoad,goodEndRoad,goodEnd,goodEnd1,badEndShortcut,goodEndGasSation} from "./EndingsEvacuated";  
 import { badEndPictures, goodEndInterior, badEndInterior, goodEndFlood, badEndFlood, badEnd,badEndDistract,goodEndDistract} from "./EndingsStayed";
 
 const hurricane1 = {
@@ -141,43 +141,68 @@ const hurricane1 = {
       }
     }
     if(currentNode === "nodeRoad") {
-      if(choicesTaken.includes("d")) { //and c9
+      if(choicesTaken.includes("d")){
+        if(choicesTaken.includes("c35")) {
         return "goodEndRoad";
-      } else if(choicesTaken.includes("d0")) {
+      }else  return "badEndRoad";}
+      else if(choicesTaken.includes("d0")){
         return "badEndShortcut";
       } else if(choicesTaken.includes("d1")) {
         return "badEndRoad";
       } else if(choicesTaken.includes("d2")) {
         return "nodeGasStation";
       } else if(choicesTaken.includes("d3")) {
-        return "nodeStayed";
+        "nodeStayed";
+    }
+  }
+    if(currentNode === "nodeGasStation") {
+      if(choicesTaken.includes("d4")) { 
+        return "goodEndGasStation";
+      } else if(choicesTaken.includes("d5")) {
+        if(choicesTaken.includes("c35")) {
+          return "goodEndRoad";
+        } else return "badEndRoad";
       }
     }
     if(currentNode === "nodeStayed") {
-      if(choicesTaken.includes("h")) { //&&"b2"&&"b3"
-        return "goodEndDistract";//i can´t put the bad end here :(
-      } else if(choicesTaken.includes("h0")) {
+      if(choicesTaken.includes("h")){
+        if(all(choicesTaken,"b2","b3")) { 
+        return "goodEndDistract";
+      } else return "badEndDistract";}
+      else if(choicesTaken.includes("h0")) {
         return "badEndPictures";
-      } else if(choicesTaken.includes("h1")) {//b1,b2,b5
+      } 
+      else if(choicesTaken.includes("h1"))
+        {if(all(choicesTaken,"b1","b2","b5")) {
         return "goodEndInterior";
-      } else if(choicesTaken.includes("h2")) {
-        return "nodeHurri2";
-      } else if(choicesTaken.includes("h3")) {//b1,b2,b6
+      } else return badEndInterior ;} 
+      else if(choicesTaken.includes("h2")) {
+        return "nodeStayed2";
+      } else if(choicesTaken.includes("h3")){
+        if(all(choicesTaken,"b1","b2","b6")) {//b1,b2,b6
         return "goodEndFlood";
-      }
+      }else return "badEndFlood";
     }
+  }
     if(currentNode === "nodeStayed2") {
       if(choicesTaken.includes("h4")) {
-        return "badEndDistract";
+        if(all(choicesTaken,"b2","b3")) { 
+          return "goodEndDistract";
+        } else return "badEndDistract";
       } else if(choicesTaken.includes("h5")) {
         return "badEndPictures";
-      } else if(choicesTaken.includes("h6")) {
+      } else if(choicesTaken.includes("h6"))       
+         {if(all(choicesTaken,"b1","b2","b5")) {
         return "goodEndInterior";
+      } else return badEndInterior ;
       } else if(choicesTaken.includes("h7")) {
-        return "goodEndFlood";
+        if(all(choicesTaken,"b1","b2","b6")) {
+          return "goodEndFlood";
+        }else return "badEndFlood";
       }
     }
-  },
+  }
+  ,
   timeUntilDisaster: 2880,
   nodes: {
     "start": new NarrativeNode("start",
@@ -225,7 +250,7 @@ const hurricane1 = {
     "node7": new NarrativeNode("node7",
         "You see the trees shaking and the winds are getting stronger," +
         " you underestimated this hurricane",
-        Scenes.LivingRoom,
+        Scenes.Outside2,
         [
         new Choice("a13", "Oh no, I need to prepare my house, I don't have time to evacuate!"+ 100,20),
         new Choice("a14", "When the hurricane arraives, I will just hide in my inside room.", -50,0,true), 
@@ -266,7 +291,7 @@ const hurricane1 = {
         "You decide to check on your neighbors and family members. Some of them need help "+
         " securing their homes, and you spend a few hours assisting them." + 
         " While you feel good about helping others, the hurricane is getting closer. What should you do now?",
-        Scenes.Outside,
+        Scenes.FriendsHouse,
         [
         //new Choice("b16", "I should go home and keep preparing the house", 65, 30), /*goes back to node8*/
         new Choice("b17", "I am exhausted, I will distract myself a little", -25, 300), /*goes to node9.1*/
@@ -283,7 +308,7 @@ const hurricane1 = {
     ]),
     "node11": new NarrativeNode("node11", "You have gathered everyone and are ready to evacuate," +
         " but you remember some hotels and shelters don't accept pets, what should you do?",
-        Scenes.Outside,
+        Scenes.FrontDoor,
         [
         new Choice("c11", "I will have to leave them behind", -40,0),
         new Choice("c12", "I will take them with me anyways!", 100,0),
@@ -310,38 +335,36 @@ const hurricane1 = {
     ]),
     "node14": new NarrativeNode("node14", "The gas station is full of people trying to fill their tanks before the hurricane hits."+
       " You wait in line for hours, but it was worth it. You are now ready to evacuate.",
-        Scenes.Outside
+        Scenes.GasStation,
         [
         new Choice("c36", "Go to a shelter", 100,0,true),
         new Choice("c37", "Stay at a hotel", 70,0,true),
         new Choice("c38", "Go to a friend's/family member's house", 50,0,true),
         new Choice("c39", "Drive to a different city", 300,180)
     ]),
-
 //Evactuation Event Nodes
     "nodeRoad": new NarrativeNode("nodeEvacuationRoad","You have been on the road for hours the traffic is crazy, everyone is trying to evacuate you might stay stuck in line,"+
       " and run out of gas before reaching a safe area, what will you do?",
-        Scenes.Outside
+        Scenes.Driving,
         [
         new Choice("d",  "Keep driving until you reach the neighboor city", 25,0, true), 
         new Choice("d0", "Take a risky shortcut to escape the traffic", 20, 0,true), 
         new Choice("d1", "Turn back and try to find shelter nearby", 100, 0 ,true), 
         new Choice("d2", "Stop at the nearest gas station to refuel", 65, 60),
-        new Choice("d3", "Turn back and go home instead", 50,0, true)
+        new Choice("d3", "Turn back and go home instead", 50,true )
     ]),
 
     "nodeGasStation": new NarrativeNode("nodeGasStation", "You arrive at a gas station that is packed with vehicles.Apperantly the station is out of gas, what will you do?",
         Scenes.GasStation,
         [
         new Choice("d4", "Stay at the station and try to find shelter inside", 75,0,true),
-        new Choice("d6", "Try to find another gas station nearby", 30,0,true),
-        new Choice("d7", "Decide to continue driving without refueling", -50,0, true)
+        new Choice("d5", "Decide to continue driving without refueling", -50,0, true)
     ]),
 // Hurricane Event Nodes
     "nodeStayed": new NarrativeNode("nodeStayed","The hurricane has arrived. The sky is dark, and the howling winds shake"+
      " the very foundation of your house. Debris flies past your windows, and the power flickers ominously."+
      " You realize this is a critical moment—your actions now could mean the difference between survival and disaster.",
-        Scenes.Outside,
+        Scenes.LivingRoom,
         [
         new Choice("h",  "Distract yourself and hope for the best.", -100, 0,true), 
         new Choice("h0", "Step outside to take pictures of the storm to post online.", -150, 0,true), 
@@ -351,7 +374,7 @@ const hurricane1 = {
     ]),
   "nodeStayed2": new NarrativeNode("nodeStudyed2","You rush to turn off the gas and electricity,"+
     "reducing the risk of fires or electrical hazards. The house goes silent except for the storm's roar.",
-        Scenes.Outside,
+        Scenes.LivingRoom,
         [
         new Choice("h",  "Distract yourself and hope for the best.", -100, 0,true), 
         new Choice("h0", "Step outside to take pictures of the storm to post online.", -150, 0,true), 
@@ -359,7 +382,7 @@ const hurricane1 = {
         new Choice("h3", "Try to control the flooding inside the house.", 200, 0,true)
     ]),
     goodEnd,goodEnd1,goodEndRoad,goodEndShelter, badEndRoad,goodEndShelter,goodEndHotel,goodEndFriendHouse,badEndShortcut,
-    badEndPictures,goodEndInterior, badEndInterior,goodEndFlood, badEndFlood,badEnd, badEndDistract, goodEndDistract
+    badEndPictures,goodEndInterior, badEndInterior,goodEndFlood, badEndFlood,badEnd, badEndDistract, goodEndDistract,goodEndGasSation
     }    
   };
 

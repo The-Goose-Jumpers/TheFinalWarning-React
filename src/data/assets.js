@@ -6,12 +6,16 @@ const Scenes = {
   FrontDoor: `${SCENES_BASE_PATH}/frontdoor.jpg`,
   Outside: `${SCENES_BASE_PATH}/outside.png`,
   Outside2: `${SCENES_BASE_PATH}/outside2.png`,
-  Outside3: `${SCENES_BASE_PATH}/outside3.png`,
+  FriendsHouse: `${SCENES_BASE_PATH}/friendshouse.png`,
+  GasStation: `${SCENES_BASE_PATH}/gasStation.png`,
   Hotel: `${SCENES_BASE_PATH}/hotelsign.jpg`,
   Shelter: `${SCENES_BASE_PATH}/shelter.jpg`,
   GoodEndEvacuacaoRIP: `${SCENES_BASE_PATH}/goodendevacuacaorip.jpg`,
   BadEndEvacuacao: `${SCENES_BASE_PATH}/badendevacuacao.jpg`,
   BadEndStay: `${SCENES_BASE_PATH}/badendstay.jpg`,
+  GoodEnd: `${SCENES_BASE_PATH}/goodend.jpg`,
+  BadEndFlood: `${SCENES_BASE_PATH}/badEndFlooding.jpg`,
+  GoodEndFlood: `${SCENES_BASE_PATH}/goodEndFlooding.jpg`,
 };
 
 export { Scenes };
