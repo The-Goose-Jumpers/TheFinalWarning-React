@@ -1,8 +1,8 @@
 import NarrativeNode from "../NarrativeNode";
 import Choice from "../Choice";
-import { any } from "../../utils/arrayUtils";
+import { any,all} from "../../utils/arrayUtils";
 import { Scenes } from "../assets";
-import { goodEndShelter, goodEndHotel, goodEndFriendHouse,badEndRoad,goodEndRoad,goodEnd,goodEnd1,badEndShortcut,goodEndGasSation } from "./EndingsEvacuated";  
+import { goodEndShelter, goodEndHotel, goodEndFriendsHouse,badEndRoad,goodEndRoad,goodEnd,badEndShortcut,goodEndGasSation } from "./EndingsEvacuated";  
 import { badEndPictures, goodEndInterior, badEndInterior, goodEndFlood, badEndFlood, badEnd,badEndDistract,goodEndDistract} from "./EndingsStayed";
 
 const hurricane1 = {
@@ -118,14 +118,11 @@ const hurricane1 = {
           return "goodEndShelter";
         }else if(choicesTaken.includes("c32")){
           return "goodEndHotel";
-        }
-        else if(choicesTaken.includes("c33")){
-          return "goodEndFriendHouse";
-        }
-        else if(choicesTaken.includes("c34")){
+        }else if(choicesTaken.includes("c33")){
+          return "goodEndFriendsHouse";
+        }else if(choicesTaken.includes("c34")){
           return "nodeRoad";
-        }
-        else if(choicesTaken.includes("c35")){
+        }else if(choicesTaken.includes("c35")){
           return "node14";
         }
       }
@@ -135,7 +132,7 @@ const hurricane1 = {
         }else if(choicesTaken.includes("c37")){
           return "goodEndHotel";
         }else if(choicesTaken.includes("c38")){
-          return "goodEndFriendHouse";
+          return "goodEndFriendsHouse";
         }else if(choicesTaken.includes("c39")){
           return "nodeRoad";
         }
@@ -152,7 +149,7 @@ const hurricane1 = {
         } else if(choicesTaken.includes("d2")) {
           return "nodeGasStation";
         } else if(choicesTaken.includes("d3")) {
-          "nodeStayed";
+          return "nodeStayed";
       }
     }
       if(currentNode === "nodeGasStation") {
@@ -381,7 +378,7 @@ const hurricane1 = {
           new Choice("h1", "Find shelter in an interior room with no windows.", 50, 0,true), 
           new Choice("h3", "Try to control the flooding inside the house.", 200, 0,true)
       ]),
-      goodEnd,goodEnd1,goodEndRoad,goodEndShelter, badEndRoad,goodEndShelter,goodEndHotel,goodEndFriendHouse,badEndShortcut,
+      goodEnd,goodEndRoad,goodEndShelter, badEndRoad,goodEndHotel,goodEndFriendsHouse,badEndShortcut,
       badEndPictures,goodEndInterior, badEndInterior,goodEndFlood, badEndFlood,badEnd, badEndDistract, goodEndDistract,goodEndGasSation
       }    
     };
