@@ -178,7 +178,7 @@ const hurricane1 = {
       }
     }
   },
-  timeUntilDisaster: 2880,
+  timeUntilDisaster: 1440,
   nodes: {
     "start": new NarrativeNode("start",
         "You just heard the news about the category 4 hurricane that will be reaching your area in 1 day."+
