@@ -6,6 +6,29 @@ import GameView from "./GameView";
 import NARRATIVES from "../data/narratives";
 import PauseModal from "./PauseModal";
 import Worries from "../data/Worries";
+import { badEnd, goodEndDistract, badEndDistract, badEndPictures, goodEndInterior, badEndInterior, goodEndFlood, badEndFlood } from "../data/narratives/EndingsStayed";
+import { goodEnd, goodEndGasSation, badEndShortcut, goodEndRoad, badEndRoad, goodEndShelter, goodEndHotel, goodEndFriendsHouse } from "../data/narratives/EndingsEvacuated";
+
+const allbadEndings = [
+  badEnd,
+  badEndDistract,
+  badEndPictures,
+  badEndInterior,
+  badEndFlood,
+  badEndShortcut,
+  badEndRoad,
+];
+const allgoodEndings = [
+  goodEndDistract,
+  goodEndInterior,
+  goodEndFlood,
+  goodEnd,
+  goodEndGasSation,
+  goodEndRoad,
+  goodEndShelter,
+  goodEndHotel,
+  goodEndFriendsHouse
+];
 
 
 function Timer({ minutes }) {
@@ -162,8 +185,12 @@ function Game() {
     const nextNode = narrative.determineNextNode(currentNode, [...choicesTaken, ...selectedChoices]);
 
     // Check if game reaches an ending
-    if (nextNode === "goodEnd" || nextNode === "badEnd" ) {
-      evaluateScoreForTraits(); // Adjust score based on player traits and choices
+    if (any(allbadEndings.map(ending => ending.id), nextNode)) {
+      evaluateScoreForTraits();
+      setIsGameOver(true);
+    } else if (any(allgoodEndings.map(ending => ending.id), nextNode)) {
+      evaluateScoreForTraits();
+      setIsGameOver(true); // Adjust score based on player traits and choices	
     }
 
     setCurrentNode(nextNode);
