@@ -52,7 +52,8 @@ const hurricane1 = {
         return "node8";
       }
     }
-    if (currentNode === "node8" && any(choicesTaken("b0", "b1", "b2", "b3", "b4", "b5", "b6"))) {
+    if (currentNode === "node8" && 
+      any(choicesTaken,"b0", "b1", "b2", "b3", "b4", "b5", "b6")) {
         return "node9";
     }
 
@@ -276,14 +277,14 @@ const hurricane1 = {
         new Choice("b11", "I think I should evacuate now", 65,20),
     ]),
     "node9.1": new NarrativeNode("node9.1","You decided to do one of your favorite activities to get some rest and relax"+
-        "You are now feeling less stressed, but time flies it's been 5 hours, what should you do now?",
+      "You are now feeling less stressed, but time flies it's been 5 hours, what should you do now?",
         Scenes.LivingRoom,
         [
         //new Choice("b12", "I should keep preparing the house", 65,10),/*goes back to node8*/
         new Choice("b13", "I will go check on my neighbors/family members, they might need help", 50,120), /*goes back to node 9*/
         new Choice("b14", "I think I did everything i had to do so now I will just wait", -10,0,true), /*sets timer to 0*/
         new Choice("b15", "I think I should evacuate now", 65,20),
-    ]),
+  ]),
     "node9.2": new NarrativeNode("node9.2", 
         "You decide to check on your neighbors and family members. Some of them need help "+
         " securing their homes, and you spend a few hours assisting them." + 
