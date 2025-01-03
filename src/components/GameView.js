@@ -60,7 +60,7 @@ function GameView({ narrativeNode, onChoice, choicesTaken, speed = 100 }) {
             </div>
             {isDialogueComplete && (
                 <div className="choices">
-                     {choices.filter((choice) => !choicesTaken.includes(choice)).map((choice)=>(
+                     {(choices || []).filter((choice) => !choicesTaken.includes(choice)).map((choice)=>(
                         <ChoiceButton
                             key={choice.id}
                             choice={choice}

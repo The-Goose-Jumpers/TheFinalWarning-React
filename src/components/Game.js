@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { any,all } from "../utils/arrayUtils";
+import { useNavigate } from "react-router-dom";
 import "../styles/Game.css";
 import "../styles/Animations.css";
 import GameView from "./GameView";
@@ -98,64 +99,53 @@ function Game() {
   function evaluateScoreForTraits() {
     let scoreChange = 0;
 
-    if(playerTraits.hasPets){
-      if(any(choicesTaken,"c11","c1")){
+    if (playerTraits.hasPets) {
+      if (any(choicesTaken, "c11", "c1")) {
         scoreChange -= 50;
       }
-      if(any(choicesTaken,"c1","c12","c13")){
+      if (any(choicesTaken, "c1", "c12", "c13")) {
         scoreChange += 100;
       }
     }
 
-    if (playerTraits.hasKids)
-    {
-      if(!choicesTaken.includes("c1")){
+    if (playerTraits.hasKids) {
+      if (!choicesTaken.includes("c1")) {
         scoreChange -= 50;
       }
-      if(all(choicesTaken,"c1")){
+      if (all(choicesTaken, "c1")) {
         scoreChange += 100;
       }
     }
-    if(playerTraits.hasElderlyNeighbors){
-      if(any(choicesTaken,"b9","b13")){
+    if (playerTraits.hasElderlyNeighbors) {
+      if (any(choicesTaken, "b9", "b13")) {
         scoreChange += 100;
-    } else scoreChange -= 20;
-  }
-    if (playerTraits.hasFamilyMemberCantEvacuate){
-      if(any(choicesTaken,"c","a4","a15","b11","b15")){
+      } else scoreChange -= 20;
+    }
+    if (playerTraits.hasFamilyMemberCantEvacuate) {
+      if (any(choicesTaken, "c", "a4", "a15", "b11", "b15")) {
         scoreChange -= 50;
       } else scoreChange += 50;
-    } 
-    
-    if (playerTraits.hasExpensiveItems){
-      if(any(choicesTaken,"d","d0","d1","d2","d3")){
+    }
+
+    if (playerTraits.hasExpensiveItems) {
+      if (any(choicesTaken, "d", "d0", "d1", "d2", "d3")) {
         scoreChange += 100;
-        } else scoreChange -= 50;
+      } else scoreChange -= 50;
     }
     setScore((prevScore) => prevScore + scoreChange);
   }
 
 
   function saveScore(newScore) {
-    const today = new Date().toLocaleDateString(); // Get the current date as a readable string
-  
-    // Retrieve scores from localStorage or initialize with default values
+    const today = new Date().toLocaleDateString(); 
     const savedScores = JSON.parse(localStorage.getItem("scores")) || {
       bestScore: 0,
-      allScores: [], // Initialize as an empty array if it doesn't exist
+      allScores: [], 
       lastFiveScores: [],
     };
-  
-    // Update the best score
     const bestScore = Math.max(savedScores.bestScore, newScore);
-  
-    // Safely add the new score to allScores
     const allScores = (savedScores.allScores || []).concat({ score: newScore, date: today });
-  
-    // Trim to the 5 most recent scores if there are more than 5
     const lastFiveScores = allScores.slice(-5);
-  
-    // Save updated scores back to localStorage
     localStorage.setItem(
       "scores",
       JSON.stringify({ bestScore, allScores, lastFiveScores })
@@ -203,6 +193,9 @@ function Game() {
     setIsPaused(false);
     setTimeLeft(narrative.timeUntilDisaster);
     setIsGameOver(false);
+  }
+  function goToMainMenu () {
+    
   }
 
   function togglePause() {
