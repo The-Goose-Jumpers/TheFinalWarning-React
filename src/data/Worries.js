@@ -8,6 +8,11 @@ function Worries({ playerTraits }) {
                         You have pets!
                     </div>
                 )}
+                 {playerTraits.hasKids && (
+                    <div className="worries-item">
+                        You have Children that you need to take with you!
+                    </div>
+                )}
                 {playerTraits.hasElderyNeighbors && (
                     <div className="worries-item">
                         You seem to have elderly neighbors that helped you in the past.
@@ -23,7 +28,7 @@ function Worries({ playerTraits }) {
                         You have expensive belongings that seem to be very special to you.
                     </div>
                 )}
-                {!playerTraits.hasChildren &&
+                {!playerTraits.hasKids&&
                     !playerTraits.hasPets &&
                     !playerTraits.hasElderyNeighbors &&
                     !playerTraits.hasFamilyMemberCantEvacuate &&

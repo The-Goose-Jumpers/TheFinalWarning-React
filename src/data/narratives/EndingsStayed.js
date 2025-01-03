@@ -6,7 +6,7 @@ export const badEnd = new NarrativeNode( //ignores the warning
   "The hurricane's intensity caught you off guard. Unfortunately,"+ 
   " your decisions left you unprepared, and your house ended up being destroyed by the storm."+
   " Both you and your loved ones perashied in the storm.",
-  Scenes.BadEnding,
+  Scenes.BadEndStay,
   []
 ); 
   export const goodEndDistract = new NarrativeNode( //distract and did ALL THE PREPARATIONS 
