@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/TheFinalWarning-React/static/css/main.c2981968.css",
-    "main.js": "/TheFinalWarning-React/static/js/main.024ab775.js",
+    "main.css": "/TheFinalWarning-React/static/css/main.b1b9daec.css",
+    "main.js": "/TheFinalWarning-React/static/js/main.349b8381.js",
     "static/media/background.svg": "/TheFinalWarning-React/static/media/background.c4faff596ddde7cc1052.svg",
     "static/media/tv.svg": "/TheFinalWarning-React/static/media/tv.a411dd2eb2baec58d4a3.svg",
+    "static/media/clockbox.svg": "/TheFinalWarning-React/static/media/clockbox.884b0f665763ff2b935e.svg",
     "static/media/pause.svg": "/TheFinalWarning-React/static/media/pause.0b302649c01c21f49460.svg",
-    "static/media/clockbox.svg": "/TheFinalWarning-React/static/media/clockbox.d697dff1fabbbaa87a27.svg",
     "static/media/textbox.svg": "/TheFinalWarning-React/static/media/textbox.40c5d4277d4501e4d93f.svg",
     "index.html": "/TheFinalWarning-React/index.html",
-    "main.c2981968.css.map": "/TheFinalWarning-React/static/css/main.c2981968.css.map",
-    "main.024ab775.js.map": "/TheFinalWarning-React/static/js/main.024ab775.js.map"
+    "main.b1b9daec.css.map": "/TheFinalWarning-React/static/css/main.b1b9daec.css.map",
+    "main.349b8381.js.map": "/TheFinalWarning-React/static/js/main.349b8381.js.map"
   },
   "entrypoints": [
-    "static/css/main.c2981968.css",
-    "static/js/main.024ab775.js"
+    "static/css/main.b1b9daec.css",
+    "static/js/main.349b8381.js"
   ]
 }
