@@ -32,6 +32,9 @@ const hurricane1 = {
       }
     }
     if (currentNode === "node5") {
+      if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+        return "nodeStayed";
+      }
       if (choicesTaken.includes("a3")) {
         return "node6";
       } else if (choicesTaken.includes("a4")) {
@@ -41,6 +44,9 @@ const hurricane1 = {
       }
     }
     if (currentNode === "node6") {
+      if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+        return "badEnd";
+      }
       if (choicesTaken.includes("a11")) {
         return "node7";
       }
@@ -49,6 +55,9 @@ const hurricane1 = {
       }
     }
     if (currentNode === "node7") {
+      if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+        return "nodeStayed";
+      }
       if (choicesTaken.includes("a13")) {
         return "node8";
       }
@@ -59,6 +68,9 @@ const hurricane1 = {
     }
 
     if (currentNode === "node9") {
+      if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+        return "nodeStayed";
+      }
       // if (choicesTaken.includes("b7")) {return "node8";} else 
       if (choicesTaken.includes("b8")) {
         return "node9.1";
@@ -69,11 +81,12 @@ const hurricane1 = {
       } else if (choicesTaken.includes("b11")) {
         return "node10";
       }
-      if (timeUntilDisaster === 0) {
-        return "nodeStayed";
-      }
+
     }
     if (currentNode === "node9.1") {
+      if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+        return "nodeStayed";
+      }
       //if (choicesTaken.includes("b12")) {return "node8";} else
       if (choicesTaken.includes("b13")) {
         return "node9.2";
@@ -81,14 +94,13 @@ const hurricane1 = {
         return "nodeStayed";
       } else if (choicesTaken.includes("b15")) {
         return "node10";
-
-      }
-      if (timeUntilDisaster === 0) {
-        return "nodeStayed";
       }
     }
     if (currentNode === "node9.2") {
       // if (choicesTaken.includes("b16")) {// return "node8";} else 
+      if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+        return "nodeStayed";
+      }
       if (choicesTaken.includes("b17")) {
         return "node9.1";
       } else if (choicesTaken.includes("b18")) {
@@ -96,11 +108,11 @@ const hurricane1 = {
       } else if (choicesTaken.includes("b19")) {
         return "node10";
       }
-      if (timeUntilDisaster === 0) {
-        return "nodeStayed";
-      }
 
       if (currentNode === "node10") {
+        if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+          return "nodeStayed";
+        }
         if (choicesTaken.includes("c1")) {
           return "node11";
         } else if (choicesTaken.includes("c2")) {
@@ -108,11 +120,12 @@ const hurricane1 = {
         } else if (choicesTaken.includes("c3")) {
           return "node13";
         }
-        if(timeUntilDisaster === 0) {
-          return "nodeStayed";
-        }
+
       }
       if (currentNode === "node11") {
+        if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+          return "nodeStayed";
+        }
         if (choicesTaken.includes("c11")) {
           return "node13";
         } else if (choicesTaken.includes("c12")) {
@@ -122,19 +135,19 @@ const hurricane1 = {
         } else if (choicesTaken.includes("c14")) {
           return "nodeStayed";
         }
-        if(timeUntilDisaster === 0) {
-          return "nodeStayed";
-        }
       }
       if (currentNode === "node12"){
+        if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+          return "nodeStayed";
+        }
         if(any(choicesTaken, "c21", "c22", "c23", "c24", "c25", "c26")) {
         return "node13";
         }
-        if(timeUntilDisaster === 0) {
-          return "nodeStayed";
-        }
       }
       if (currentNode === "node13") {
+        if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+          return "nodeStayed";
+        }
         if (choicesTaken.includes("c31")) {
           return "goodEndShelter";
         } else if (choicesTaken.includes("c32")) {
@@ -146,11 +159,11 @@ const hurricane1 = {
         } else if (choicesTaken.includes("c35")) {
           return "node14";
         }
-        if(timeUntilDisaster === 0) {
-          return "nodeStayed";
-        }
       }
       if (currentNode === "node14") {
+        if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+          return "endGasStation";
+        }
         if (choicesTaken.includes("c36")) {
           return "goodEndShelter";
         } else if (choicesTaken.includes("c37")) {
@@ -160,11 +173,11 @@ const hurricane1 = {
         } else if (choicesTaken.includes("c39")) {
           return "nodeRoad";
         }
-        if(timeUntilDisaster === 0) {
-          return "endGasStation";
-        }
       }
       if (currentNode === "nodeRoad") {
+        if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+          return "badEndRoad";
+        }
         if (choicesTaken.includes("d")) {
           if (choicesTaken.includes("c35")) {
             return "goodEndRoad";
@@ -178,9 +191,6 @@ const hurricane1 = {
           return "nodeGasStation";
         } else if (choicesTaken.includes("d3")) {
           return "nodeStayed";
-        }
-        if(timeUntilDisaster === 0) {
-          return "badEndRoad";
         }
       }
       if (currentNode === "nodeGasStation") {

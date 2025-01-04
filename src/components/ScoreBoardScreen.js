@@ -2,6 +2,7 @@ import "../styles/ScoreBoardScreen.css";
 import "../styles/Animations.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Rankings from "./Ranking";
 
 function BackButton({ setIsFading }) {
   const navigate = useNavigate();
@@ -20,19 +21,18 @@ function BackButton({ setIsFading }) {
   );
 }
 
-function RankingButton({ setIsFading }) {
-  const navigate = useNavigate();
-
-  const handleBackClick = () => {
+function RankingButton({ setIsFading, showRankings }) {
+  const handleRankingClick = () => {
     setIsFading(true);
     setTimeout(() => {
-      navigate("/RankingScreen");
+      showRankings(true);
+      setIsFading(false);
     }, 1500); // Match the duration of the fade-out animation
   };
 
   return (
-    <button className="ranking-button" onClick={handleBackClick}>
-      Ranking
+    <button className="ranking-button" onClick={handleRankingClick}>
+      Rankings
     </button>
   );
 }
@@ -41,18 +41,25 @@ function ScoreBoardScreen() {
   const [isFading, setIsFading] = useState(false);
   const [isFadingIn, setIsFadingIn] = useState(true);
   const [scores, setScores] = useState({ bestScore: 0, lastFiveScores: [] });
+  const [error, setError] = useState(null);
+  const [showRankings, setShowRankings] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
       setIsFadingIn(false);
     }, 1500); // Match the duration of the fade-in animation
 
-    const savedScores = JSON.parse(localStorage.getItem("scores")) || {
-      bestScore: 0,
-      lastFiveScores: [],
-    };
+    try {
+      const savedScores = JSON.parse(localStorage.getItem("scores")) || {
+        bestScore: 0,
+        lastFiveScores: [],
+      };
 
-    setScores(savedScores);
+      setScores(savedScores);
+    } catch (err) {
+      console.error("Error fetching scores:", err);
+      setError("Failed to load scores. Please try again later.");
+    }
   }, []);
 
   return (
@@ -60,25 +67,32 @@ function ScoreBoardScreen() {
       <div className={`scoreboard-screen ${isFading ? "fade-out" : ""}`}>
         <div className="score-display">
           <h1 className="scoreboard-title">Scoreboard</h1>
-          <div>
-            <h2>Best Score</h2>
-            <p>{scores.bestScore}</p>
-          </div>
-          <div>
-            <h2>Last 5 Scores</h2>
-            <ul>
-              {(scores.lastFiveScores || []).map((entry, index) => (
-                <li key={index}>
-                  Score: {entry.score} {entry.date}
-                </li>
-              ))}
-            </ul>
-          </div>
-
+          {error ? (
+            <p className="error-message">{error}</p>
+          ) : showRankings ? (
+            <Rankings />
+          ) : (
+            <>
+              <div>
+                <h2>Best Score</h2>
+                <p>{scores.bestScore}</p>
+              </div>
+              <div>
+                <h2>Last 5 Scores</h2>
+                <ul>
+                  {(scores.lastFiveScores || []).map((entry, index) => (
+                    <li key={index}>
+                      Score: {entry.score} {entry.date && <span>({entry.date})</span>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </>
+          )}
         </div>
         <div className="scoreboard-controls">
+          <RankingButton setIsFading={setIsFading} showRankings={setShowRankings} />
           <BackButton setIsFading={setIsFading} />
-          <RankingButton setIsFading={setIsFading} />
         </div>
       </div>
       {isFading && <div className="fade-out-overlay"></div>}

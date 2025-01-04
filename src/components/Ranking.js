@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../firebase";
+import { db } from "../lib/firebase";
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 
 function Rankings() {
@@ -32,7 +32,7 @@ function Rankings() {
       <ul>
         {rankings.map((entry, index) => (
           <li key={index}>
-            {index + 1}. {entry.name} - {entry.score} ({entry.date})
+            {index + 1}. {entry.name}: {entry.score} ({entry.date})
           </li>
         ))}
       </ul>

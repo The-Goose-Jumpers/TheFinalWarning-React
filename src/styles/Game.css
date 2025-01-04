@@ -312,3 +312,9 @@ button {
     flex-direction: column;
     gap: 10px;
 }
+
+.game-over-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

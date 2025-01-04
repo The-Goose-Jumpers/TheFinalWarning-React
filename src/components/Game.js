@@ -139,8 +139,6 @@ function Game() {
     }
     setScore((prevScore) => prevScore + scoreChange);
   }
-
-
   function saveScore(newScore) {
     const today = new Date().toLocaleDateString(); 
     const savedScores = JSON.parse(localStorage.getItem("scores")) || {

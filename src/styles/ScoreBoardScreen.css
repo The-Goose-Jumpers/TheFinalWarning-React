@@ -33,14 +33,17 @@
 }
 
 .scoreboard-controls {
-  grid-row: 1; /* Place it in the first row */
-  grid-column: 2; /* Place it in the second column */
+  display: flex;
+  flex-direction: column;
+  grid-row: 1;
+  grid-column: 2;
   z-index: 3;
   display: flex;
   justify-content: flex-start;
-  width: 100%; /* Increase the width */
-  padding-right: 41vh;
-  padding-bottom: 36vh;
+  width: 100%;
+  padding-right: 38vh;
+  padding-bottom: 57vh;
+  gap: 8.5vh;
 }
 .back-button {
   width: 13vh;
