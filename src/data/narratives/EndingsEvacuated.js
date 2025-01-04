@@ -33,7 +33,7 @@ export const goodEndGasSation= new NarrativeNode( //evacuate safely
     "You managed to navigate the challenges on the road, including heavy traffic and potential fuel shortages."+
     " After hours of driving, you finally reach a safe location away from the hurricane's path. The feeling of "+ 
     " relief washes over you as you and your loved ones settle into a safe and secure environment.",
-    Scenes.GoodEndEvacuacaoRIP,
+    Scenes.GoodEnd,
     []
   );
   

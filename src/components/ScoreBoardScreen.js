@@ -20,6 +20,23 @@ function BackButton({ setIsFading }) {
   );
 }
 
+function RankingButton({ setIsFading }) {
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    setIsFading(true);
+    setTimeout(() => {
+      navigate("/RankingScreen");
+    }, 1500); // Match the duration of the fade-out animation
+  };
+
+  return (
+    <button className="back-button" onClick={handleBackClick}>
+      Ranking
+    </button>
+  );
+}
+
 function ScoreBoardScreen() {
   const [isFading, setIsFading] = useState(false);
   const [isFadingIn, setIsFadingIn] = useState(true);

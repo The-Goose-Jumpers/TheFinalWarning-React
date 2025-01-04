@@ -5,9 +5,10 @@ import { Scenes } from "../assets";
 import { goodEndShelter, goodEndHotel, goodEndFriendsHouse,badEndRoad,goodEndRoad,goodEnd,badEndShortcut,goodEndGasSation } from "./EndingsEvacuated";  
 import { badEndPictures, goodEndInterior, badEndInterior, goodEndFlood, badEndFlood, badEnd,badEndDistract,goodEndDistract} from "./EndingsStayed";
 
-const hurricane1 = {
-  id: "hurricane1",
-  determineNextNode: (currentNode, choicesTaken) => {
+const hurricane2 = {
+  id: "hurricane2",
+  timeUntilDisaster: 1440,
+  determineNextNode: (currentNode, choicesTaken,timeUntilDisaster) => {
     if (currentNode === "start") {
       if (choicesTaken.includes("a")) {
         return "node4";
@@ -42,7 +43,8 @@ const hurricane1 = {
     if (currentNode === "node6") {
       if (choicesTaken.includes("a11")) {
         return "node7";
-      } else if (choicesTaken.includes("a12")) {
+      }
+      else if (choicesTaken.includes("a12")) {
         return "badEnd";
       }
     }
@@ -51,8 +53,8 @@ const hurricane1 = {
         return "node8";
       }
     }
-    if (currentNode === "node8" && 
-       any(choicesTaken,"b0", "b1", "b2", "b3", "b4", "b5", "b6")) {
+    if (currentNode === "node8" &&
+      any(choicesTaken, "b0", "b1", "b2", "b3", "b4", "b5", "b6")) {
       return "node9";
     }
 
@@ -67,6 +69,9 @@ const hurricane1 = {
       } else if (choicesTaken.includes("b11")) {
         return "node10";
       }
+      if (timeUntilDisaster === 0) {
+        return "nodeStayed";
+      }
     }
     if (currentNode === "node9.1") {
       //if (choicesTaken.includes("b12")) {return "node8";} else
@@ -76,6 +81,10 @@ const hurricane1 = {
         return "nodeStayed";
       } else if (choicesTaken.includes("b15")) {
         return "node10";
+
+      }
+      if (timeUntilDisaster === 0) {
+        return "nodeStayed";
       }
     }
     if (currentNode === "node9.2") {
@@ -87,123 +96,144 @@ const hurricane1 = {
       } else if (choicesTaken.includes("b19")) {
         return "node10";
       }
-    }
+      if (timeUntilDisaster === 0) {
+        return "nodeStayed";
+      }
 
-    if (currentNode === "node10") {
-      if (choicesTaken.includes("c1")) {
-        return "node11";
-      } else if (choicesTaken.includes("c2")) {
-        return "node12";
-      } else if (choicesTaken.includes("c3")) {
+      if (currentNode === "node10") {
+        if (choicesTaken.includes("c1")) {
+          return "node11";
+        } else if (choicesTaken.includes("c2")) {
+          return "node12";
+        } else if (choicesTaken.includes("c3")) {
+          return "node13";
+        }
+        if(timeUntilDisaster === 0) {
+          return "nodeStayed";
+        }
+      }
+      if (currentNode === "node11") {
+        if (choicesTaken.includes("c11")) {
+          return "node13";
+        } else if (choicesTaken.includes("c12")) {
+          return "node13";
+        } else if (choicesTaken.includes("c13")) {
+          return "node9";
+        } else if (choicesTaken.includes("c14")) {
+          return "nodeStayed";
+        }
+        if(timeUntilDisaster === 0) {
+          return "nodeStayed";
+        }
+      }
+      if (currentNode === "node12"){
+        if(any(choicesTaken, "c21", "c22", "c23", "c24", "c25", "c26")) {
         return "node13";
+        }
+        if(timeUntilDisaster === 0) {
+          return "nodeStayed";
+        }
       }
-    }
-    if (currentNode === "node11") {
-      if (choicesTaken.includes("c11")) {
-        return "node13";
-      } else if (choicesTaken.includes("c12")) {
-        return "node13";
-      } else if (choicesTaken.includes("c13")) {
-        return "node9";
-      } else if (choicesTaken.includes("c14")) {
-        return "nodeStayed";
+      if (currentNode === "node13") {
+        if (choicesTaken.includes("c31")) {
+          return "goodEndShelter";
+        } else if (choicesTaken.includes("c32")) {
+          return "goodEndHotel";
+        } else if (choicesTaken.includes("c33")) {
+          return "goodEndFriendsHouse";
+        } else if (choicesTaken.includes("c34")) {
+          return "nodeRoad";
+        } else if (choicesTaken.includes("c35")) {
+          return "node14";
+        }
+        if(timeUntilDisaster === 0) {
+          return "nodeStayed";
+        }
       }
-    }
-    if (currentNode === "node12" &&
-      any(choicesTaken, "c21", "c22", "c23", "c24", "c25", "c26")) {
-      return "node13";
-    }
-    if (currentNode === "node13") {
-      if (choicesTaken.includes("c31")) {
-        return "goodEndShelter";
-      } else if (choicesTaken.includes("c32")) {
-        return "goodEndHotel";
-      } else if (choicesTaken.includes("c33")) {
-        return "goodEndFriendsHouse";
-      } else if (choicesTaken.includes("c34")) {
-        return "nodeRoad";
-      } else if (choicesTaken.includes("c35")) {
-        return "node14";
+      if (currentNode === "node14") {
+        if (choicesTaken.includes("c36")) {
+          return "goodEndShelter";
+        } else if (choicesTaken.includes("c37")) {
+          return "goodEndHotel";
+        } else if (choicesTaken.includes("c38")) {
+          return "goodEndFriendsHouse";
+        } else if (choicesTaken.includes("c39")) {
+          return "nodeRoad";
+        }
+        if(timeUntilDisaster === 0) {
+          return "endGasStation";
+        }
       }
-    }
-    if (currentNode === "node14") {
-      if (choicesTaken.includes("c36")) {
-        return "goodEndShelter";
-      } else if (choicesTaken.includes("c37")) {
-        return "goodEndHotel";
-      } else if (choicesTaken.includes("c38")) {
-        return "goodEndFriendsHouse";
-      } else if (choicesTaken.includes("c39")) {
-        return "nodeRoad";
+      if (currentNode === "nodeRoad") {
+        if (choicesTaken.includes("d")) {
+          if (choicesTaken.includes("c35")) {
+            return "goodEndRoad";
+          } else return "badEndRoad";
+        }
+        else if (choicesTaken.includes("d0")) {
+          return "badEndShortcut";
+        } else if (choicesTaken.includes("d1")) {
+          return "badEndRoad";
+        } else if (choicesTaken.includes("d2")) {
+          return "nodeGasStation";
+        } else if (choicesTaken.includes("d3")) {
+          return "nodeStayed";
+        }
+        if(timeUntilDisaster === 0) {
+          return "badEndRoad";
+        }
       }
-    }
-    if (currentNode === "nodeRoad") {
-      if (choicesTaken.includes("d")) {
-        if (choicesTaken.includes("c35")) {
-          return "goodEndRoad";
-        } else return "badEndRoad";
+      if (currentNode === "nodeGasStation") {
+        if (choicesTaken.includes("d4")) {
+          return "goodEndGasStation";
+        } else if (choicesTaken.includes("d5")) {
+          if (choicesTaken.includes("c35")) {
+            return "goodEndRoad";
+          } else return "badEndRoad";
+        }
       }
-      else if (choicesTaken.includes("d0")) {
-        return "badEndShortcut";
-      } else if (choicesTaken.includes("d1")) {
-        return "badEndRoad";
-      } else if (choicesTaken.includes("d2")) {
-        return "nodeGasStation";
-      } else if (choicesTaken.includes("d3")) {
-        return "nodeStayed";
+      if (currentNode === "nodeStayed") {
+        if (choicesTaken.includes("h")) {
+          if (all(choicesTaken, "b2", "b3")) {
+            return "goodEndDistract";
+          } else return "badEndDistract";
+        }
+        else if (choicesTaken.includes("h0")) {
+          return "badEndPictures";
+        }
+        else if (choicesTaken.includes("h1")) {
+          if (all(choicesTaken, "b1", "b2", "b5")) {
+            return "goodEndInterior";
+          } else return badEndInterior;
+        }
+        else if (choicesTaken.includes("h2")) {
+          return "nodeStayed2";
+        } else if (choicesTaken.includes("h3")) {
+          if (all(choicesTaken, "b1", "b2", "b6")) {//b1,b2,b6
+            return "goodEndFlood";
+          } else return "badEndFlood";
+        }
       }
-    }
-    if (currentNode === "nodeGasStation") {
-      if (choicesTaken.includes("d4")) {
-        return "goodEndGasStation";
-      } else if (choicesTaken.includes("d5")) {
-        if (choicesTaken.includes("c35")) {
-          return "goodEndRoad";
-        } else return "badEndRoad";
-      }
-    }
-    if (currentNode === "nodeStayed") {
-      if (choicesTaken.includes("h")) {
-        if (all(choicesTaken, "b2", "b3")) {
-          return "goodEndDistract";
-        } else return "badEndDistract";
-      }
-      else if (choicesTaken.includes("h0")) {
-        return "badEndPictures";
-      }
-      else if (choicesTaken.includes("h1")) {
-        if (all(choicesTaken, "b1", "b2", "b5")) {
-          return "goodEndInterior";
-        } else return badEndInterior;
-      }
-      else if (choicesTaken.includes("h2")) {
-        return "nodeStayed2";
-      } else if (choicesTaken.includes("h3")) {
-        if (all(choicesTaken, "b1", "b2", "b6")) {//b1,b2,b6
-          return "goodEndFlood";
-        } else return "badEndFlood";
-      }
-    }
-    if (currentNode === "nodeStayed2") {
-      if (choicesTaken.includes("h4")) {
-        if (all(choicesTaken, "b2", "b3")) {
-          return "goodEndDistract";
-        } else return "badEndDistract";
-      } else if (choicesTaken.includes("h5")) {
-        return "badEndPictures";
-      } else if (choicesTaken.includes("h6")) {
-        if (all(choicesTaken, "b1", "b2", "b5")) {
-          return "goodEndInterior";
-        } else return badEndInterior;
-      } else if (choicesTaken.includes("h7")) {
-        if (all(choicesTaken, "b1", "b2", "b6")) {
-          return "goodEndFlood";
-        } else return "badEndFlood";
+      if (currentNode === "nodeStayed2") {
+        if (choicesTaken.includes("h4")) {
+          if (all(choicesTaken, "b2", "b3")) {
+            return "goodEndDistract";
+          } else return "badEndDistract";
+        } else if (choicesTaken.includes("h5")) {
+          return "badEndPictures";
+        } else if (choicesTaken.includes("h6")) {
+          if (all(choicesTaken, "b1", "b2", "b5")) {
+            return "goodEndInterior";
+          } else return badEndInterior;
+        } else if (choicesTaken.includes("h7")) {
+          if (all(choicesTaken, "b1", "b2", "b6")) {
+            return "goodEndFlood";
+          } else return "badEndFlood";
+        }
       }
     }
   }
-    ,
-  timeUntilDisaster: 1440,
+  ,
   nodes: {
     "start": new NarrativeNode("start",
         "You just heard the news about the category 4 hurricane that will be reaching your area in 1 day."+
@@ -387,5 +417,5 @@ const hurricane1 = {
       }    
     };
   
-  export default hurricane1;
+  export default hurricane2;
   
