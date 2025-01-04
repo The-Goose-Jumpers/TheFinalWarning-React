@@ -9,6 +9,7 @@ import PauseModal from "./PauseModal";
 import Worries from "../data/Worries";
 import { badEnd, goodEndDistract, badEndDistract, badEndPictures, goodEndInterior, badEndInterior, goodEndFlood, badEndFlood } from "../data/narratives/EndingsStayed";
 import { goodEnd, goodEndGasSation, badEndShortcut, goodEndRoad, badEndRoad, goodEndShelter, goodEndHotel, goodEndFriendsHouse } from "../data/narratives/EndingsEvacuated";
+import GameOverView from "./GameOverView";
 
 const allbadEndings = [
   badEnd,
@@ -75,6 +76,10 @@ function Game() {
   const [isFadingIn, setIsFadingIn] = useState(true);
   const [isPulledDown, setIsPulledDown] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isGameOverTextVisible, setIsGameOverTextVisible] = useState(false);
+  const [isFadingOut, setIsFadingOut] = useState(false);
+
+  const navigate = useNavigate();
   
 
   useEffect(() => {
@@ -187,15 +192,45 @@ function Game() {
   }
 
   function resetGame() {
-    setCurrentNode("start");
-    setChoicesTaken([]);
-    setScore(0);
-    setIsPaused(false);
-    setTimeLeft(narrative.timeUntilDisaster);
-    setIsGameOver(false);
+    setIsFadingOut(true);
+    if(!isGameOver) {
+      setTimeout(() => {
+        setCurrentNode("start");
+        setChoicesTaken([]);
+        setScore(0);
+        setIsPaused(false);
+        setTimeLeft(narrative.timeUntilDisaster);
+        setIsGameOver(false);
+        setIsGameOverTextVisible(false);
+        setIsFadingOut(false);
+      }, 500);// Match the duration of the fade-out animation
+    }
+    else{
+      setTimeout(() => {
+        setCurrentNode("start");
+        setChoicesTaken([]);
+        setScore(0);
+        setIsPaused(false);
+        setTimeLeft(narrative.timeUntilDisaster);
+        setIsGameOver(false);
+        setIsGameOverTextVisible(false);
+        setIsFadingOut(false);
+      }, 5000);// Match the duration of the fade-out animation
+    }
   }
-  function goToMainMenu () {
-    
+
+  function goToMainMenu() {
+    setIsFadingOut(true);
+    if(!isGameOver){
+      setTimeout(() => {
+        navigate("/");
+      }, 500); // Match the duration of the fade-out animation
+    }
+    else{
+        setTimeout(() => {
+            navigate("/");
+        }, 5000); // Match the duration of the fade
+    }
   }
 
   function togglePause() {
@@ -206,46 +241,71 @@ function Game() {
     setIsPulledDown(!isPulledDown);
   }
 
+  function showGameOverText() {
+    setIsFadingOut(true);
+    setTimeout(() => {
+      setIsGameOverTextVisible(true);
+      setIsFadingOut(false);
+      setIsFadingIn(true);
+      setTimeout(() => {
+        setIsFadingIn(false);
+      }, 5000); // Match the duration of the fade-in animation
+    }, 5000); // Match the duration of the fade-out animation
+  }
+
   if (!narrative || !currentNode) return <div>Loading...</div>;
 
   const narrativeNode = narrative.nodes[currentNode];
+  const {dialogue, backgroundImage} = narrativeNode;
 
   if (isGameOver===true) {
     saveScore(score);
     return (
-      <div className="game-over">
-        <h1>Game Over</h1>
-        <p>Your final score is: {score}</p>
-        <button onClick={resetGame}>Restart Game</button>
-      </div>
+        <div className="game-over-screen ">
+          {!isGameOverTextVisible && (
+              <div className="game-over-context">
+                <p className="End-Mensage">{dialogue}</p>
+                <button className="next-button-end" onClick={showGameOverText}>▽</button>
+              </div>
+          )}
+          {isGameOverTextVisible && (
+              <GameOverView
+                  score={score}
+                  toRestart={resetGame}
+                  toMainMenu={goToMainMenu}
+                  narrative={narrativeNode}
+              />
+          )}
+          {isFadingOut && <div className="end-fade-out-overlay"></div>}
+          {isFadingIn && <div className="end-fade-in-overlay"></div>}
+        </div>
+    );
+  } else {
+    return (
+        <>
+          <div className="topbar">
+            <button className="pause-button" onClick={togglePause}></button>
+            <div className={`timerbox ${isPulledDown ? "pulled-down" : ""}`}>
+              <div className="worries-display">
+                <Worries playerTraits={playerTraits}/>
+              </div>
+              <div className="time-left">Time until disaster:</div>
+              <Timer minutes={timeLeft}/>
+              <button className="pull-down-button" onClick={togglePullDown}></button>
+            </div>
+          </div>
+          <GameView
+              narrativeNode={narrativeNode}
+              onChoice={handleChoice}
+              choicesTaken={choicesTaken}
+              speed={10}
+          />
+          {isPaused && <PauseModal onResume={togglePause} onMainMenu={goToMainMenu} />}
+          {isFadingIn && <div className="fade-in-overlay"></div>}
+          {isFadingOut && <div className="fade-out-overlay"></div>}
+        </>
     );
   }
-
-  return (
-    <>
-      <div className="topbar">
-        <button className="pause-button" onClick={togglePause}></button>
-        <div className={`timerbox ${isPulledDown ? "pulled-down" : ""}`}>
-          <div className="worries-display">
-            <Worries playerTraits={playerTraits} />
-          </div>
-          <div className="time-left">Time until disaster:</div>
-          <Timer minutes={timeLeft} />
-          <button className="pull-down-button" onClick={togglePullDown}></button>
-        </div>
-      </div>
-      <GameView
-        narrativeNode={narrativeNode}
-        onChoice={handleChoice}
-        choicesTaken={choicesTaken}
-        speed={10}
-      />
-      {isPaused && <PauseModal onRestart={resetGame} onResume={togglePause} />}
-      {isFadingIn && <div className="fade-in-overlay"></div>}
-    </>
-  );
 }
-
-
 
 export default Game;

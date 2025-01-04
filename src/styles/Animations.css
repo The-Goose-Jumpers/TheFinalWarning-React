@@ -8,7 +8,7 @@
   background-color: black;
   animation: fadeOut 0.5s ease-in-out forwards; /* Customize duration and easing */
   pointer-events: none; /* Ensure it doesn't block interactions */
-  z-index: 3; /* Ensure it is above other elements */
+  z-index: 10; /* Ensure it is above other elements */
 }
 
 @keyframes fadeOut {
@@ -22,7 +22,6 @@
   }
 }
 
-/* src/styles/FadeIn.css */
 .fade-in-overlay {
   position: fixed;
   top: 0;
@@ -31,6 +30,7 @@
   height: 100vh;
   background-color: black;
   animation: fadeIn 0.5s ease-in-out forwards; /* Customize duration and easing */
+  z-index: 10;
 }
 
 @keyframes fadeIn {
@@ -39,5 +39,28 @@
   }
   100% {
     opacity: 0;
+
   }
+}
+
+.end-fade-out-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  animation: fadeOut 2s ease-in-out forwards; /* Customize duration and easing */
+  z-index: 10; /* Ensure it is above other elements */
+}
+
+.end-fade-in-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  animation: fadeIn 2s ease-in-out forwards; /* Customize duration and easing */
+  z-index: 10;
 }

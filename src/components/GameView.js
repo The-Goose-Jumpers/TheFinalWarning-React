@@ -70,7 +70,6 @@ function GameView({ narrativeNode, onChoice, choicesTaken, speed = 100 }) {
                 </div>
             )}
             {allowMultipleChoices && isDialogueComplete && (
-        
                 <button className="confirm-button" onClick={confirmChoices}>
                     Confirm Choices
                 </button>

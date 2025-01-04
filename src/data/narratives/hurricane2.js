@@ -252,8 +252,8 @@ const hurricane1 = {
           " you underestimated this hurricane",
           Scenes.Outside2,
           [
-          new Choice("a13", "Oh no, I need to prepare my house, I don't have time to evacuate!"+ 100,20),
-          new Choice("a14", "When the hurricane arraives, I will just hide in my inside room.", -50,0,true), 
+          new Choice("a13", "Oh no, I need to prepare my house, I don't have time to evacuate!", 100,20),
+          new Choice("a14", "When the hurricane arrives, I will just hide in my inside room.", -50,0,true),
           new Choice("a15", "I will still try to evacuate!", 45,60),
       ]),
       "node8": new NarrativeNode("node8",
