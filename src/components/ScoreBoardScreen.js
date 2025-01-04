@@ -31,7 +31,7 @@ function RankingButton({ setIsFading }) {
   };
 
   return (
-    <button className="back-button" onClick={handleBackClick}>
+    <button className="ranking-button" onClick={handleBackClick}>
       Ranking
     </button>
   );
@@ -40,7 +40,7 @@ function RankingButton({ setIsFading }) {
 function ScoreBoardScreen() {
   const [isFading, setIsFading] = useState(false);
   const [isFadingIn, setIsFadingIn] = useState(true);
-  const [scores, setScores] = useState({ bestScore: 0, allScores: [], lastFiveScores: [] });
+  const [scores, setScores] = useState({ bestScore: 0, lastFiveScores: [] });
 
   useEffect(() => {
     setTimeout(() => {
@@ -49,7 +49,6 @@ function ScoreBoardScreen() {
 
     const savedScores = JSON.parse(localStorage.getItem("scores")) || {
       bestScore: 0,
-      allScores: [],
       lastFiveScores: [],
     };
 
@@ -70,7 +69,7 @@ function ScoreBoardScreen() {
             <ul>
               {(scores.lastFiveScores || []).map((entry, index) => (
                 <li key={index}>
-                  Score: {entry.score} {entry.date && <span>({entry.date})</span>}
+                  Score: {entry.score} {entry.date}
                 </li>
               ))}
             </ul>
@@ -79,6 +78,7 @@ function ScoreBoardScreen() {
         </div>
         <div className="scoreboard-controls">
           <BackButton setIsFading={setIsFading} />
+          <RankingButton setIsFading={setIsFading} />
         </div>
       </div>
       {isFading && <div className="fade-out-overlay"></div>}

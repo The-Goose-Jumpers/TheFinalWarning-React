@@ -145,15 +145,18 @@ function Game() {
     const today = new Date().toLocaleDateString(); 
     const savedScores = JSON.parse(localStorage.getItem("scores")) || {
       bestScore: 0,
-      allScores: [], 
       lastFiveScores: [],
     };
     const bestScore = Math.max(savedScores.bestScore, newScore);
-    const allScores = (savedScores.allScores || []).concat({ score: newScore, date: today });
-    const lastFiveScores = allScores.slice(-5);
+    const lastFiveScores = [
+      { score: newScore, date: today },
+      ...savedScores.lastFiveScores.filter(
+        (entry) => entry.score !== newScore || entry.date !== today
+      ),
+    ].slice(0, 5);
     localStorage.setItem(
       "scores",
-      JSON.stringify({ bestScore, allScores, lastFiveScores })
+      JSON.stringify({ bestScore, lastFiveScores })
     );
   }
 
