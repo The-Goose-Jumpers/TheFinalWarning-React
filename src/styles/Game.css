@@ -186,8 +186,8 @@ button {
 
 .choice-button.selected {
   padding: 16px;
-  background-color: #ecc6b5;
-  color: black;
+  background-color: #f4ebdd;
+  color: #483516;
 }
 
 .confirm-button {

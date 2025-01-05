@@ -1,3 +1,5 @@
+import Game from "../components/Game";
+
 const SCENES_BASE_PATH = `${process.env.PUBLIC_URL}/images/Scenes`;
 const MUSIC_BASE_PATH = `${process.env.PUBLIC_URL}/images/Music`;
 const MUSIC_BUTTON_BASE_PATH = `${process.env.PUBLIC_URL}/images/UI`;
@@ -11,7 +13,7 @@ const Scenes = {
   FriendsHouse: `${SCENES_BASE_PATH}/friendshouse.png`,
   GasStation: `${SCENES_BASE_PATH}/gasStation.png`,
   Hotel: `${SCENES_BASE_PATH}/hotelsign.jpg`,
-  Shelter: `${SCENES_BASE_PATH}/shelter.jpg`,
+  Shelter: `${SCENES_BASE_PATH}/shelter.png`,
   GoodEndEvacuacaoRIP: `${SCENES_BASE_PATH}/goodendEvacuacaorip.png`,
   BadEndEvacuacao: `${SCENES_BASE_PATH}/badendEvacuacao.png`,
   BadEndStay: `${SCENES_BASE_PATH}/badendStay.png`,
@@ -21,7 +23,8 @@ const Scenes = {
 };
 
 const Music = {
-  Gameplay: `${MUSIC_BASE_PATH}/GameplaySong.ogg`,
+  Gameplay: `${MUSIC_BASE_PATH}/Gameplay.ogg`,
+  Gameplay2: `${MUSIC_BASE_PATH}/GameplaySong.ogg`,
   GameOver: `${MUSIC_BASE_PATH}/GameOverSong.ogg`,
   IntroAnimation: `${MUSIC_BASE_PATH}/IntroAnimation.ogg`,
   MainMenuSong: `${MUSIC_BASE_PATH}/MainMenuSong.ogg`,
