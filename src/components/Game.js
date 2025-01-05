@@ -199,7 +199,9 @@ function Game() {
       return choice.resetTime;
     });
 
-    setScore((prevScore) => prevScore + totalScore);
+    setScore((prevScore) => { 
+      const newScore = prevScore + totalScore;
+      return newScore < 0 ? 0 : newScore;});
     setChoicesTaken((prevChoices) => [...prevChoices, ...selectedChoices]);
     setTimeLeft((prevTimeLeft) => (shouldResetTime ? 0 : prevTimeLeft - totalTimeUsed));
 
