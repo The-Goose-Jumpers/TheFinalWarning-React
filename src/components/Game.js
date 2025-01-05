@@ -161,7 +161,10 @@ function Game() {
         scoreChange += 100;
       } else scoreChange -= 50;
     }
-    setScore((prevScore) => prevScore + scoreChange);
+    setScore((prevScore) => {
+      const newScore = prevScore + scoreChange;
+      return newScore < 0 ? 0 : newScore;
+    });
   }
 
   function saveScore(newScore) {
@@ -199,9 +202,8 @@ function Game() {
       return choice.resetTime;
     });
 
-    setScore((prevScore) => { 
-      const newScore = prevScore + totalScore;
-      return newScore < 0 ? 0 : newScore;});
+    setScore((prevScore) => 
+      prevScore + totalScore);
     setChoicesTaken((prevChoices) => [...prevChoices, ...selectedChoices]);
     setTimeLeft((prevTimeLeft) => (shouldResetTime ? 0 : prevTimeLeft - totalTimeUsed));
 
