@@ -26,10 +26,121 @@
 .score-display {
   grid-row: 1;
   grid-column: 1; /* Place it in the first column */
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   padding: 7% 14% 7% 28%; /* top right bottom left */
   z-index: 2;
+}
+
+.scoreboard-title {
+  width: 100%;
+  height: 23%;
+  font-size: 5rem;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 5vh;
+  border-bottom: 1vh solid black;
+  font-family: "Caesar Dressing", system-ui;
+}
+
+.Score-details{
+    display: flex;
+    flex-direction: row;
+    gap: 5vh;
+
+}
+
+.Score-Best{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    width: 60vh;
+    height: 55vh;
+  border-right: 2vh solid black;
+}
+
+.Score-Best-title{
+  font-size: 10vh;
+  font-family: "Caesar Dressing", system-ui;
+  color: #000000;
+  text-align: center;
+}
+
+.Score-Best-score{
+  font-size: 20vh;
+  color: #000000;
+  text-align: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.Score-Last{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    height: 100%;
+}
+
+.Score-Last-title{
+  font-size: 4.4vh;
+  font-family: "Caesar Dressing", system-ui;
+  color: #000000;
+  text-align: center;
+}
+
+.Score-Last-list{
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  width: 100%;
+  height: 100%;
+}
+
+.Score-list{
+  display: flex;
+  flex-direction: row;
+  gap: 3vh;
+  width: 100%;
+}
+
+
+.rankings{
+    grid-row: 1;
+    grid-column: 2; /* Place it in the second column */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.rankings-title{
+  width: 100%;
+  height: 23%;
+  font-size: 7vh;
+  font-family: "Caesar Dressing", system-ui;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 1vh;
+}
+
+.rankings-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1vh;
+  width: 100%;
+  height: 100%;
+}
+
+.rankings-rank {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1vh;
 }
 
 .scoreboard-controls {
@@ -38,13 +149,13 @@
   grid-row: 1;
   grid-column: 2;
   z-index: 3;
-  display: flex;
   justify-content: flex-start;
   width: 100%;
-  padding-right: 38vh;
-  padding-bottom: 57vh;
-  gap: 8.5vh;
+  padding-right: 41vh;
+  padding-bottom: 57.7vh;
+  gap: 8.6vh;
 }
+
 .back-button {
   width: 13vh;
   height: 13vh;
@@ -57,7 +168,6 @@
   background-color: #303030;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
 
 .back-button:hover {
   background-color: #474747;
@@ -81,16 +191,16 @@
   background-color: #303030;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
 .ranking-button:hover {
   background-color: #474747;
   transform: scale(1.05);
 }
+
 .ranking-button:active {
   background-color: #3b2a12;
   transform: scale(0.95);
 }
-
-
 
 /* Media Queries */
 @media (max-width: 1200px) {

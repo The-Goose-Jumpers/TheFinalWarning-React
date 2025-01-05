@@ -1,4 +1,6 @@
 const SCENES_BASE_PATH = `${process.env.PUBLIC_URL}/images/Scenes`;
+const MUSIC_BASE_PATH = `${process.env.PUBLIC_URL}/images/Music`;
+const MUSIC_BUTTON_BASE_PATH = `${process.env.PUBLIC_URL}/images/UI`;
 
 const Scenes = {
   LivingRoom: `${SCENES_BASE_PATH}/LivingRoom.png`,
@@ -18,4 +20,14 @@ const Scenes = {
   GoodEndFlood: `${SCENES_BASE_PATH}/goodEndFlooding.jpg`,
 };
 
-export { Scenes };
+const Music = {
+  Gameplay: `${MUSIC_BASE_PATH}/GameplaySong.ogg`,
+  GameOver: `${MUSIC_BASE_PATH}/GameOverSong.ogg`,
+  IntroAnimation: `${MUSIC_BASE_PATH}/IntroAnimation.ogg`,
+  MainMenuSong: `${MUSIC_BASE_PATH}/MainMenuSong.ogg`,
+  TurnOff: `${MUSIC_BUTTON_BASE_PATH}/MusicOff.svg`,
+  TurnOn: `${MUSIC_BUTTON_BASE_PATH}/MusicOn.svg`,
+  Click: `${MUSIC_BASE_PATH}/click-button.mp3`,
+}
+
+export { Scenes, Music };

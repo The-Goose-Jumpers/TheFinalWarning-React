@@ -15,9 +15,9 @@ function BackButton({ setIsFading }) {
   };
 
   return (
-    <button className="back-button" onClick={handleBackClick}>
-      Back
-    </button>
+      <button className="back-button" onClick={handleBackClick}>
+        Back
+      </button>
   );
 }
 
@@ -31,14 +31,34 @@ function RankingButton({ setIsFading, showRankings }) {
   };
 
   return (
-    <button className="ranking-button" onClick={handleRankingClick}>
-      Rankings
-    </button>
+      <button className="ranking-button" onClick={handleRankingClick}>
+        Rankings
+      </button>
+  );
+}
+
+function ScoreButton({ setIsFading, showRankings, setIsFadingIn }) {
+  const handleScoreClick = () => {
+    setIsFading(true);
+    setTimeout(() => {
+      showRankings(false);
+      setIsFading(false);
+      setIsFadingIn(true);
+      setTimeout(() => {
+        setIsFadingIn(false);
+      }, 1500); // Match the duration of the fade-in animation
+    }, 1500); // Match the duration of the fade-out animation
+  };
+
+  return (
+      <button className="ranking-button" onClick={handleScoreClick}>
+        Scores
+      </button>
   );
 }
 
 function ScoreBoardScreen() {
-  const [isFading, setIsFading] = useState(false);
+  const [isFadingOut, setIsFadingOut] = useState(false);
   const [isFadingIn, setIsFadingIn] = useState(true);
   const [scores, setScores] = useState({ bestScore: 0, lastFiveScores: [] });
   const [error, setError] = useState(null);
@@ -63,41 +83,47 @@ function ScoreBoardScreen() {
   }, []);
 
   return (
-    <div className="scoreboard">
-      <div className={`scoreboard-screen ${isFading ? "fade-out" : ""}`}>
-        <div className="score-display">
-          <h1 className="scoreboard-title">Scoreboard</h1>
-          {error ? (
-            <p className="error-message">{error}</p>
-          ) : showRankings ? (
-            <Rankings />
-          ) : (
-            <>
-              <div>
-                <h2>Best Score</h2>
-                <p>{scores.bestScore}</p>
-              </div>
-              <div>
-                <h2>Last 5 Scores</h2>
-                <ul>
-                  {(scores.lastFiveScores || []).map((entry, index) => (
-                    <li key={index}>
-                      Score: {entry.score} {entry.date && <span>({entry.date})</span>}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </>
-          )}
+      <div className="scoreboard">
+        <div className={`scoreboard-screen ${isFadingOut ? "fade-out" : ""}`}>
+          <div className="score-display">
+            <h1 className="scoreboard-title">Scoreboard</h1>
+            {error ? (
+                <p className="error-message">{error}</p>
+            ) : showRankings ? (
+                <Rankings />
+            ) : (
+                <div className="Score-details">
+                  <div className="Score-Best">
+                    <h2 className="Score-Best-title">Best Score</h2>
+                    <p className="Score-Best-score">{scores.bestScore}</p>
+                  </div>
+                  <div className="Score-Last">
+                    <h2 className="Score-Last-title">Last 5 Scores</h2>
+                    <ul className="Score-Last-list">
+                      {(scores.lastFiveScores || []).map((entry, index) => (
+                          <ul className="Score-list" key={index}>
+                            Score: {entry.score} {entry.date && <span className="Score-Date">||{entry.date}||</span>}
+                          </ul>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+            )}
+          </div>
+          <div className="scoreboard-controls">
+            {error ? (
+                <p className="error-message">{error}</p>
+            ) : showRankings ? (
+                <ScoreButton setIsFading={setIsFadingOut} showRankings={setShowRankings} setIsFadingIn={setIsFadingIn} />
+            ) : (
+                <RankingButton setIsFading={setIsFadingOut} showRankings={setShowRankings} />
+            )}
+            <BackButton setIsFading={setIsFadingOut} />
+          </div>
         </div>
-        <div className="scoreboard-controls">
-          <RankingButton setIsFading={setIsFading} showRankings={setShowRankings} />
-          <BackButton setIsFading={setIsFading} />
-        </div>
+        {isFadingOut && <div className="fade-out-overlay"></div>}
+        {isFadingIn && <div className="fade-in-overlay"></div>}
       </div>
-      {isFading && <div className="fade-out-overlay"></div>}
-      {isFadingIn && <div className="fade-in-overlay"></div>}
-    </div>
   );
 }
 

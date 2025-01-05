@@ -58,22 +58,24 @@ function GameView({ narrativeNode, onChoice, choicesTaken, speed = 100 }) {
             <div className="textbox">
                 <div className="dialogue">{displayedText}</div>
             </div>
-            {isDialogueComplete && (
-                <div className="choices">
-                     {(choices || []).filter((choice) => !choicesTaken.includes(choice)).map((choice)=>(
-                        <ChoiceButton
-                            key={choice.id}
-                            choice={choice}
-                            onChoice={handleChoice}
-                        />
-                    ))}
-                </div>
-            )}
-            {allowMultipleChoices && isDialogueComplete && (
-                <button className="confirm-button" onClick={confirmChoices}>
-                    Confirm Choices
-                </button>
-            )}
+            <div className="choices-layout">
+                {isDialogueComplete && (
+                    <div className="choices">
+                         {(choices || []).filter((choice) => !choicesTaken.includes(choice)).map((choice)=>(
+                            <ChoiceButton
+                                key={choice.id}
+                                choice={choice}
+                                onChoice={handleChoice}
+                            />
+                        ))}
+                    </div>
+                )}
+                {allowMultipleChoices && isDialogueComplete && (
+                    <button className="confirm-button" onClick={confirmChoices}>
+                        Confirm Choices
+                    </button>
+                )}
+            </div>
         </div>
     );
 }
