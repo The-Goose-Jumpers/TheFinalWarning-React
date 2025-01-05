@@ -192,12 +192,12 @@ button {
 
 .confirm-button {
   z-index: 2;
-  width: 30vh;
+  width: 29vh;
   font-size: 20px;
   border: none;
   cursor: pointer;
   color: #f4ebdd;
-  background-color: #483516;
+  background-color: #48351694;
 }
 
 .pause-button {

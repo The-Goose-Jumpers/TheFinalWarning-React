@@ -18,6 +18,7 @@ const hurricane1 = {
     }
   }
   if (currentNode === "node3") {
+    
     if (choicesTaken.includes("b")) {
       return "node8";
     } else if (choicesTaken.includes("c")) {
@@ -25,6 +26,9 @@ const hurricane1 = {
     }
   }
   if (currentNode === "node4") {
+    if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+      return "nodeStayed";
+    }
     if (choicesTaken.includes("a1")) {
       return "node6";
     } else if (choicesTaken.includes("a2")) {
@@ -64,10 +68,13 @@ const hurricane1 = {
   }
 
   if (currentNode === "node8") {
+    if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+      return "nodeStayed";
+    }
     if(any(choicesTaken, "b0", "b1", "b2", "b3", "b4", "b5", "b6")) {
     return "node9";
   }
-  else return "node 9"
+  else return "node9";
 }
 
   if (currentNode === "node9") {
@@ -215,7 +222,7 @@ const hurricane1 = {
       else if (choicesTaken.includes("h1")) {
         if (all(choicesTaken, "b1", "b2", "b5")) {
           return "goodEndInterior";
-        } else return badEndInterior;
+        } else return "badEndInterior";
       }
       else if (choicesTaken.includes("h2")) {
         return "nodeStayed2";
@@ -235,7 +242,7 @@ const hurricane1 = {
       } else if (choicesTaken.includes("h6")) {
         if (all(choicesTaken, "b1", "b2", "b5")) {
           return "goodEndInterior";
-        } else return badEndInterior;
+        } else return "badEndInterior";
       } else if (choicesTaken.includes("h7")) {
         if (all(choicesTaken, "b1", "b2", "b6")) {
           return "goodEndFlood";

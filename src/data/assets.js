@@ -3,6 +3,7 @@ import Game from "../components/Game";
 const SCENES_BASE_PATH = `${process.env.PUBLIC_URL}/images/Scenes`;
 const MUSIC_BASE_PATH = `${process.env.PUBLIC_URL}/images/Music`;
 const MUSIC_BUTTON_BASE_PATH = `${process.env.PUBLIC_URL}/images/UI`;
+const HELPMENU_BASE_PATH = `${process.env.PUBLIC_URL}/images/HelpMenu`;
 
 const Scenes = {
   LivingRoom: `${SCENES_BASE_PATH}/LivingRoom.png`,
@@ -31,6 +32,17 @@ const Music = {
   TurnOff: `${MUSIC_BUTTON_BASE_PATH}/MusicOff.svg`,
   TurnOn: `${MUSIC_BUTTON_BASE_PATH}/MusicOn.svg`,
   Click: `${MUSIC_BASE_PATH}/click-button.mp3`,
-}
+};
+const HelpMenu ={
+  NodeStart: `${HELPMENU_BASE_PATH}/startnode.png`,
+  Node1: `${HELPMENU_BASE_PATH}/node1.png`,
+  Node2: `${HELPMENU_BASE_PATH}/node2.png`,
+  Node4: `${HELPMENU_BASE_PATH}/node4.png`,
+  Node5: `${HELPMENU_BASE_PATH}/node5.png`,
+  Node6: `${HELPMENU_BASE_PATH}/node6.png`,
+  Node7: `${HELPMENU_BASE_PATH}/node7.png`,
+  Node8: `${HELPMENU_BASE_PATH}/node8.png`,
+};
 
-export { Scenes, Music };
+
+export { Scenes, Music, HelpMenu };

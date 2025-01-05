@@ -103,7 +103,7 @@ function Game() {
     });
     if(isGameOver){
       const {audioElement, gainNode} =
-          initializeAudio(`${process.env.PUBLIC_URL}/images/Music/GameOverSong.ogg`, setAudio, setGainNode);
+          initializeAudio(`${process.env.PUBLIC_URL}/images/Music/GameOverSong2.ogg`, setAudio, setGainNode);
       setVolume(gainNode, 0.25); // Set initial volume to 0.5
       return () => {
         audioElement.pause();
@@ -111,7 +111,7 @@ function Game() {
       };
     }else {
       const {audioElement, gainNode} =
-          initializeAudio(`${process.env.PUBLIC_URL}/images/Music/GameplaySong.ogg`, setAudio, setGainNode);
+          initializeAudio(`${process.env.PUBLIC_URL}/images/Music/GameplaySong2.ogg`, setAudio, setGainNode);
       setVolume(gainNode, 0.25); // Set initial volume to 0.5
       return () => {
         audioElement.pause();
