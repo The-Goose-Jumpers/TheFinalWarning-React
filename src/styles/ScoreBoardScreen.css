@@ -102,7 +102,7 @@
 .Score-list{
   display: flex;
   flex-direction: row;
-  gap: 3vh;
+  gap: 4vh;
   width: 100%;
 }
 
