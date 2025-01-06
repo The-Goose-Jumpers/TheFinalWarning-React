@@ -321,6 +321,8 @@ button {
 .game-over-title{
     font-size: 70px;
     font-weight: bold;
+    font-family: "Caesar Dressing", system-ui;
+    color:#f4ebdd
 }
 
 .game-over-score-display{

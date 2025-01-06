@@ -146,6 +146,7 @@
 .scoreboard-controls {
   display: flex;
   flex-direction: column;
+  position: relative;
   grid-row: 1;
   grid-column: 2;
   z-index: 3;
