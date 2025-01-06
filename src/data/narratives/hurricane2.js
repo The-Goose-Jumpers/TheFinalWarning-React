@@ -9,247 +9,253 @@ const hurricane2 = {
   id: "hurricane2",
   timeUntilDisaster: 1440,
   determineNextNode: (currentNode, choicesTaken,timeUntilDisaster) => {
-    if (currentNode === "start") {
-      if (choicesTaken.includes("a")) {
-        return "node4";
+      if (currentNode === "start") {
+          if (choicesTaken.includes("a")) {
+              return "node4";
+          }
+          else if (any(choicesTaken, "f", "e")) {
+              return "node3";
+          }
       }
-      else if (any(choicesTaken, "f", "e")) {
-        return "node3";
+      if (currentNode === "node3") {
+
+          if (choicesTaken.includes("b")) {
+              return "node8";
+          } else if (choicesTaken.includes("c")) {
+              return "node10";
+          }
       }
-    }
-    if (currentNode === "node3") {
-      
-      if (choicesTaken.includes("b")) {
-        return "node8";
-      } else if (choicesTaken.includes("c")) {
-        return "node10";
+      if (currentNode === "node4") {
+          if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+              return "nodeStayed";
+          }
+          if (choicesTaken.includes("a1")) {
+              return "node6";
+          } else if (choicesTaken.includes("a2")) {
+              return "node5";
+          }
       }
-    }
-    if (currentNode === "node4") {
-      if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
-        return "nodeStayed";
+      if (currentNode === "node5") {
+          if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+              return "nodeStayed";
+          }
+          if (choicesTaken.includes("a3")) {
+              return "node6";
+          } else if (choicesTaken.includes("a4")) {
+              return "node10";
+          } else if (choicesTaken.includes("a5")) {
+              return "node8";
+          }
       }
-      if (choicesTaken.includes("a1")) {
-        return "node6";
-      } else if (choicesTaken.includes("a2")) {
-        return "node5";
+      if (currentNode === "node6") {
+          if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+              return "badEnd";
+          }
+          if (choicesTaken.includes("a11")) {
+              return "node7";
+          }
+          else if (choicesTaken.includes("a12")) {
+              return "badEnd";
+          }
       }
-    }
-    if (currentNode === "node5") {
-      if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
-        return "nodeStayed";
+      if (currentNode === "node7") {
+          if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+              return "nodeStayed";
+          }
+          if (choicesTaken.includes("a13")) {
+              return "node8";
+          }
+          if(choicesTaken.includes("a14")) {
+              return "nodeStayed";
+          }
+          if(choicesTaken.includes("a15")) {
+              return "node10";
+          }
       }
-      if (choicesTaken.includes("a3")) {
-        return "node6";
-      } else if (choicesTaken.includes("a4")) {
-        return "node10";
-      } else if (choicesTaken.includes("a5")) {
-        return "node8";
+
+      if (currentNode === "node8") {
+          if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+              return "nodeStayed";
+          }
+          if(any(choicesTaken, "b0", "b1", "b2", "b3", "b4", "b5", "b6")) {
+              return "node9";
+          }
+          else return "node9";
       }
-    }
-    if (currentNode === "node6") {
-      if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
-        return "badEnd";
+
+      if (currentNode === "node9") {
+          if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+              return "nodeStayed";
+          }
+          // if (choicesTaken.includes("b7")) {return "node8";} else
+          if (choicesTaken.includes("b8")) {
+              return "node9.1";
+          } else if (choicesTaken.includes("b9")) {
+              return "node9.2";
+          } else if (choicesTaken.includes("b10")) {
+              return "nodeStayed";
+          } else if (choicesTaken.includes("b11")) {
+              return "node10";
+          }
+
       }
-      if (choicesTaken.includes("a11")) {
-        return "node7";
+      if (currentNode === "node9.1") {
+          if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+              return "nodeStayed";
+          }
+          //if (choicesTaken.includes("b12")) {return "node8";} else
+          if (choicesTaken.includes("b13")) {
+              return "node9.2";
+          } else if (choicesTaken.includes("b14")) {
+              return "nodeStayed";
+          } else if (choicesTaken.includes("b15")) {
+              return "node10";
+          }
       }
-      else if (choicesTaken.includes("a12")) {
-        return "badEnd";
+      if (currentNode === "node9.2") {
+          // if (choicesTaken.includes("b16")) {// return "node8";} else
+          if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+              return "nodeStayed";
+          }
+          if (choicesTaken.includes("b17")) {
+              return "node9.1";
+          } else if (choicesTaken.includes("b18")) {
+              return "nodeStayed";
+          } else if (choicesTaken.includes("b19")) {
+              return "node10";
+          }
       }
-    }
-    if (currentNode === "node7") {
-      if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
-        return "nodeStayed";
-      }
-      if (choicesTaken.includes("a13")) {
-        return "node8";
-      }
-    }
-  
-    if (currentNode === "node8") {
-      if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
-        return "nodeStayed";
-      }
-      if(any(choicesTaken, "b0", "b1", "b2", "b3", "b4", "b5", "b6")) {
-      return "node9";
-    }
-    else return "node9";
-  }
-  
-    if (currentNode === "node9") {
-      if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
-        return "nodeStayed";
-      }
-      // if (choicesTaken.includes("b7")) {return "node8";} else 
-      if (choicesTaken.includes("b8")) {
-        return "node9.1";
-      } else if (choicesTaken.includes("b9")) {
-        return "node9.2";
-      } else if (choicesTaken.includes("b10")) {
-        return "nodeStayed";
-      } else if (choicesTaken.includes("b11")) {
-        return "node10";
-      }
-  
-    }
-    if (currentNode === "node9.1") {
-      if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
-        return "nodeStayed";
-      }
-      //if (choicesTaken.includes("b12")) {return "node8";} else
-      if (choicesTaken.includes("b13")) {
-        return "node9.2";
-      } else if (choicesTaken.includes("b14")) {
-        return "nodeStayed";
-      } else if (choicesTaken.includes("b15")) {
-        return "node10";
-      }
-    }
-    if (currentNode === "node9.2") {
-      // if (choicesTaken.includes("b16")) {// return "node8";} else 
-      if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
-        return "nodeStayed";
-      }
-      if (choicesTaken.includes("b17")) {
-        return "node9.1";
-      } else if (choicesTaken.includes("b18")) {
-        return "nodeStayed";
-      } else if (choicesTaken.includes("b19")) {
-        return "node10";
-      }
-    }
-  
+
       if (currentNode === "node10") {
-        if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
-          return "nodeStayed";
-        }
-        if (choicesTaken.includes("c1")) {
-          return "node11";
-        } else if (choicesTaken.includes("c2")) {
-          return "node12";
-        } else if (choicesTaken.includes("c3")) {
-          return "node13";
-        }
+          if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+              return "nodeStayed";
+          }
+          if (choicesTaken.includes("c1")) {
+              return "node11";
+          } else if (choicesTaken.includes("c2")) {
+              return "node12";
+          } else if (choicesTaken.includes("c3")) {
+              return "node13";
+          }
       }
       if (currentNode === "node11") {
-        if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
-          return "nodeStayed";
-        }
-        if (choicesTaken.includes("c11")) {
-          return "node13";
-        } else if (choicesTaken.includes("c12")) {
-          return "node13";
-        } else if (choicesTaken.includes("c13")) {
-          return "node9";
-        } 
+          if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+              return "nodeStayed";
+          }
+          if (choicesTaken.includes("c11")) {
+              return "node13";
+          } else if (choicesTaken.includes("c12")) {
+              return "node13";
+          } else if (choicesTaken.includes("c13")) {
+              return "node9";
+          }
       }
       if (currentNode === "node12"){
-        if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
-          return "nodeStayed";
-        }
-        if(any(choicesTaken, "c21", "c22", "c23", "c24", "c25", "c26")) {
-        return "node13";
-        } else return "node 13"
+          if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+              return "nodeStayed";
+          }
+          if(any(choicesTaken, "c21", "c22", "c23", "c24", "c25", "c26")) {
+              return "node13";
+          } else return "node 13"
       }
       if (currentNode === "node13") {
-        if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
-          return "nodeStayed";
-        }
-        if (choicesTaken.includes("c31")) {
-          return "goodEndShelter";
-        } else if (choicesTaken.includes("c32")) {
-          return "goodEndHotel";
-        } else if (choicesTaken.includes("c33")) {
-          return "goodEndFriendsHouse";
-        } else if (choicesTaken.includes("c34")) {
-          return "nodeRoad";
-        } else if (choicesTaken.includes("c35")) {
-          return "node14";
-        }
+          if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+              return "nodeStayed";
+          }
+          if (choicesTaken.includes("c31")) {
+              return "goodEndShelter";
+          } else if (choicesTaken.includes("c32")) {
+              return "goodEndHotel";
+          } else if (choicesTaken.includes("c33")) {
+              return "goodEndFriendsHouse";
+          } else if (choicesTaken.includes("c34")) {
+              return "nodeRoad";
+          } else if (choicesTaken.includes("c35")) {
+              return "node14";
+          }
       }
       if (currentNode === "node14") {
-        if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
-          return "endGasStation";
-        }
-        if (choicesTaken.includes("c36")) {
-          return "goodEndShelter";
-        } else if (choicesTaken.includes("c37")) {
-          return "goodEndHotel";
-        } else if (choicesTaken.includes("c38")) {
-          return "goodEndFriendsHouse";
-        } else if (choicesTaken.includes("c39")) {
-          return "nodeRoad";
-        }
+          if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+              return "endGasStation";
+          }
+          if (choicesTaken.includes("c36")) {
+              return "goodEndShelter";
+          } else if (choicesTaken.includes("c37")) {
+              return "goodEndHotel";
+          } else if (choicesTaken.includes("c38")) {
+              return "goodEndFriendsHouse";
+          } else if (choicesTaken.includes("c39")) {
+              return "nodeRoad";
+          }
       }
       if (currentNode === "nodeRoad") {
-        if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
-          return "badEndRoad";
-        }
-        if (choicesTaken.includes("d")) {
-          if (choicesTaken.includes("c35")) {
-            return "goodEndRoad";
-          } else return "badEndRoad";
-        }
-        else if (choicesTaken.includes("d0")) {
-          return "badEndShortcut";
-        } else if (choicesTaken.includes("d1")) {
-          return "badEndRoad";
-        } else if (choicesTaken.includes("d2")) {
-          return "nodeGasStation";
-        } else if (choicesTaken.includes("d3")) {
-          return "nodeStayed";
-        }
+          if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
+              return "badEndRoad";
+          }
+          if (choicesTaken.includes("d")) {
+              if (choicesTaken.includes("c35")) {
+                  return "goodEndRoad";
+              } else return "badEndRoad";
+          }
+          else if (choicesTaken.includes("d0")) {
+              return "badEndShortcut";
+          } else if (choicesTaken.includes("d1")) {
+              return "badEndRoad";
+          } else if (choicesTaken.includes("d2")) {
+              return "nodeGasStation";
+          } else if (choicesTaken.includes("d3")) {
+              return "nodeStayed";
+          }
       }
       if (currentNode === "nodeGasStation") {
-        if (choicesTaken.includes("d4")) {
-          return "goodEndGasStation";
-        } else if (choicesTaken.includes("d5")) {
-          if (choicesTaken.includes("c35")) {
-            return "goodEndRoad";
-          } else return "badEndRoad";
-        }
+          if (choicesTaken.includes("d4")) {
+              return "goodEndGasStation";
+          } else if (choicesTaken.includes("d5")) {
+              if (choicesTaken.includes("c35")) {
+                  return "goodEndRoad";
+              } else return "badEndRoad";
+          }
       }
       if (currentNode === "nodeStayed") {
-        if (choicesTaken.includes("h")) {
-          if (all(choicesTaken, "b2", "b3")) {
-            return "goodEndDistract";
-          } else return "badEndDistract";
-        }
-        else if (choicesTaken.includes("h0")) {
-          return "badEndPictures";
-        }
-        else if (choicesTaken.includes("h1")) {
-          if (all(choicesTaken, "b1", "b2", "b5")) {
-            return "goodEndInterior";
-          } else return "badEndInterior";
-        }
-        else if (choicesTaken.includes("h2")) {
-          return "nodeStayed2";
-        } else if (choicesTaken.includes("h3")) {
-          if (all(choicesTaken, "b1", "b2", "b6")) {//b1,b2,b6
-            return "goodEndFlood";
-          } else return "badEndFlood";
-        }
+          if (choicesTaken.includes("h")) {
+              if (all(choicesTaken, "b2", "b3")) {
+                  return "goodEndDistract";
+              } else return "badEndDistract";
+          }
+          else if (choicesTaken.includes("h0")) {
+              return "badEndPictures";
+          }
+          else if (choicesTaken.includes("h1")) {
+              if (all(choicesTaken, "b1", "b2", "b5")) {
+                  return "goodEndInterior";
+              } else return "badEndInterior";
+          }
+          else if (choicesTaken.includes("h2")) {
+              return "nodeStayed2";
+          } else if (choicesTaken.includes("h3")) {
+              if (all(choicesTaken, "b1", "b2", "b6")) {//b1,b2,b6
+                  return "goodEndFlood";
+              } else return "badEndFlood";
+          }
       }
       if (currentNode === "nodeStayed2") {
-        if (choicesTaken.includes("h4")) {
-          if (all(choicesTaken, "b2", "b3")) {
-            return "goodEndDistract";
-          } else return "badEndDistract";
-        } else if (choicesTaken.includes("h5")) {
-          return "badEndPictures";
-        } else if (choicesTaken.includes("h6")) {
-          if (all(choicesTaken, "b1", "b2", "b5")) {
-            return "goodEndInterior";
-          } else return "badEndInterior";
-        } else if (choicesTaken.includes("h7")) {
-          if (all(choicesTaken, "b1", "b2", "b6")) {
-            return "goodEndFlood";
-          } else return "badEndFlood";
-        }
+          if (choicesTaken.includes("h4")) {
+              if (all(choicesTaken, "b2", "b3")) {
+                  return "goodEndDistract";
+              } else return "badEndDistract";
+          } else if (choicesTaken.includes("h5")) {
+              return "badEndPictures";
+          } else if (choicesTaken.includes("h6")) {
+              if (all(choicesTaken, "b1", "b2", "b5")) {
+                  return "goodEndInterior";
+              } else return "badEndInterior";
+          } else if (choicesTaken.includes("h7")) {
+              if (all(choicesTaken, "b1", "b2", "b6")) {
+                  return "goodEndFlood";
+              } else return "badEndFlood";
+          }
       }
-    }
+  }
   ,
   nodes: {
     "start": new NarrativeNode("start",

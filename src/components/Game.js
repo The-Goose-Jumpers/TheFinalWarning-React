@@ -104,7 +104,7 @@ function Game() {
     if(isGameOver){
       const {audioElement, gainNode} =
           initializeAudio(`${process.env.PUBLIC_URL}/images/Music/GameOverSong2.ogg`, setAudio, setGainNode);
-      setVolume(gainNode, 0.25); // Set initial volume to 0.5
+      setVolume(gainNode, 0.5); // Set initial volume to 0.5
       return () => {
         audioElement.pause();
         audioElement.currentTime = 0;
@@ -112,7 +112,7 @@ function Game() {
     }else {
       const {audioElement, gainNode} =
           initializeAudio(`${process.env.PUBLIC_URL}/images/Music/GameplaySong2.ogg`, setAudio, setGainNode);
-      setVolume(gainNode, 0.25); // Set initial volume to 0.5
+      setVolume(gainNode, 0.5); // Set initial volume to 0.5
       return () => {
         audioElement.pause();
         audioElement.currentTime = 0;

@@ -33,6 +33,7 @@ const Music = {
   TurnOn: `${MUSIC_BUTTON_BASE_PATH}/MusicOn.svg`,
   Click: `${MUSIC_BASE_PATH}/click-button.mp3`,
 };
+
 const HelpMenu ={
   NodeStart: `${HELPMENU_BASE_PATH}/startnode.png`,
   Node1: `${HELPMENU_BASE_PATH}/node1.png`,
