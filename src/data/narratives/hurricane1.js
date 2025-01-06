@@ -113,7 +113,6 @@ const hurricane1 = {
     }
   }
   if (currentNode === "node9.2") {
-    // if (choicesTaken.includes("b16")) {// return "node8";} else 
     if (timeUntilDisaster === 0 || timeUntilDisaster < 0) {
       return "nodeStayed";
     }
