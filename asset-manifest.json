@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/TheFinalWarning-React/static/css/main.ad7d32f8.css",
+    "main.css": "/TheFinalWarning-React/static/css/main.8484a462.css",
     "main.js": "/TheFinalWarning-React/static/js/main.8d941511.js",
-    "static/media/background.svg": "/TheFinalWarning-React/static/media/background.807319fa1784d7674383.svg",
-    "static/media/tv.svg": "/TheFinalWarning-React/static/media/tv.9a9c019e0df456d789d7.svg",
-    "static/media/clockbox.svg": "/TheFinalWarning-React/static/media/clockbox.9ce29bf977e6b299b374.svg",
-    "static/media/pause.svg": "/TheFinalWarning-React/static/media/pause.eac615d8d79aec0c0a1e.svg",
-    "static/media/textbox.svg": "/TheFinalWarning-React/static/media/textbox.ebea83b1ee564ab3e761.svg",
+    "static/media/background.svg": "/TheFinalWarning-React/static/media/background.c4faff596ddde7cc1052.svg",
+    "static/media/tv.svg": "/TheFinalWarning-React/static/media/tv.a411dd2eb2baec58d4a3.svg",
+    "static/media/clockbox.svg": "/TheFinalWarning-React/static/media/clockbox.884b0f665763ff2b935e.svg",
+    "static/media/pause.svg": "/TheFinalWarning-React/static/media/pause.0b302649c01c21f49460.svg",
+    "static/media/textbox.svg": "/TheFinalWarning-React/static/media/textbox.40c5d4277d4501e4d93f.svg",
     "index.html": "/TheFinalWarning-React/index.html",
-    "main.ad7d32f8.css.map": "/TheFinalWarning-React/static/css/main.ad7d32f8.css.map",
+    "main.8484a462.css.map": "/TheFinalWarning-React/static/css/main.8484a462.css.map",
     "main.8d941511.js.map": "/TheFinalWarning-React/static/js/main.8d941511.js.map"
   },
   "entrypoints": [
-    "static/css/main.ad7d32f8.css",
+    "static/css/main.8484a462.css",
     "static/js/main.8d941511.js"
   ]
 }
